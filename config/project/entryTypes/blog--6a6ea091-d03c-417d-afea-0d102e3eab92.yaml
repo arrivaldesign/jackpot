@@ -1,0 +1,89 @@
+fieldLayouts:
+  0c389337-6fdd-4968-b04a-7ce78b5e25db:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: e3943c23-285b-4d84-a708-30b4038f6ad0
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 6689d232-0403-42f6-a6c4-02e40477120d # Feature Image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 92b1681f-8e72-4468-9ea4-792b07abc028
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 07a2c5a6-de12-4597-bf60-ef9481155b16 # Post Content
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f2da90b0-eca6-4590-aefd-eeb305eb19b6
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: d6072985-15aa-4e13-9a6e-67999bfa986e
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: ee381a2a-055b-473e-9226-2bf146253c5b # SEO
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7ccfc400-3d9c-46df-a21c-7c7abe92ba9e
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: 3ec88239-ae75-4ef7-826b-31c852c00764
+        userCondition: null
+handle: blog
+hasTitleField: true
+name: Blog
+section: df88a67e-e04a-4905-b201-77d4c8817fdc # Blog
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+sortOrder: 1
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

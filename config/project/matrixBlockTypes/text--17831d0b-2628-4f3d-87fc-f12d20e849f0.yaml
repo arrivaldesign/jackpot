@@ -1,0 +1,50 @@
+field: 07a2c5a6-de12-4597-bf60-ef9481155b16 # Post Content
+fieldLayouts:
+  7b8609e2-8716-400d-b44f-27edb352b012:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: 35aea10e-d80a-42f2-96cd-dbe579e56d94 # Text
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6f4c5ed1-ada9-4e9c-ae38-594eb5decfa5
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: e4840b72-41a3-474f-859e-b9b0fe28fc71
+        userCondition: null
+fields:
+  35aea10e-d80a-42f2-96cd-dbe579e56d94: # Text
+    columnSuffix: xkzoxfqw
+    contentColumnType: text
+    fieldGroup: null
+    handle: text
+    instructions: null
+    name: Text
+    searchable: false
+    settings:
+      availableTransforms: ''
+      availableVolumes: ''
+      columnType: text
+      configSelectionMode: choose
+      defaultTransform: ''
+      manualConfig: ''
+      purifierConfig: null
+      purifyHtml: true
+      removeEmptyTags: false
+      removeInlineStyles: false
+      removeNbsp: false
+      tinymceConfig: null
+    translationKeyFormat: null
+    translationMethod: none
+    type: spicyweb\tinymce\fields\TinyMCE
+handle: text
+name: Text
+sortOrder: 1

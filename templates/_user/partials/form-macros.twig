@@ -1,0 +1,164 @@
+{% macro formField(html, inputAttributes = {}, errors = []) %}
+	{% set fieldAttributes = {
+		class: ['field', (inputAttributes.required ?? false) ? 'is-required'],
+	} %}	
+	<div {{attr(fieldAttributes)}}>
+		{{html|raw}}
+		{# errors #}
+		{% if errors is not empty and inputAttributes.id ?? false %}
+			{{tag('p', {
+				class: ['help', 'is-danger'],
+				text: errors|join(' '),
+				id: inputAttributes.id ~ '-errors',
+			}) }}
+		{% endif %}
+	</div>
+{% endmacro %}
+
+{% macro formLabel(labelAttributes) %}
+	{% set defaultLabelAttributes = {
+		class: ['label'],
+	} %}
+	{% set defaultLabelAttributes = defaultLabelAttributes|merge(labelAttributes) %}
+	{{tag('label', defaultLabelAttributes)}}
+{% endmacro %}
+
+{% macro formFieldInput(inputAttributes, label = null, errors = []) %}
+	{# defaults #}
+	{% set inputClasses = ['input'] %}
+		{# aria #}
+	{% set ariaAttrs = {
+		required: inputAttributes.required ?? null,
+	} %}		
+	{# add error class #}
+	{% if errors is not empty %}
+		{% set inputClasses = inputClasses|merge(['is-danger']) %}
+	{% endif %}
+	{% set defaultInputAttributes = {
+		class: inputClasses,
+	} %}
+	{% set defaultInputAttributes = defaultInputAttributes|merge(inputAttributes) %}
+	{% set html %}
+		{# label #}
+		{% if label %}
+			{% set labelAttributes = {
+				text: label,
+				for: inputAttributes.id ?? null,
+			} %}
+			{{_self.formLabel(labelAttributes)}}
+		{% endif %}
+		{# errors #}
+		{% if errors is not empty %}
+			{% set ariaAttrs = ariaAttrs|merge({invalid: true}) %}
+			{% if inputAttributes.id ?? false %}
+				{% set ariaAttrs = ariaAttrs|merge({errormessage: inputAttributes.id ~ '-errors'}) %}
+			{% endif %}			
+		{% endif %}
+		{# add aria attributes #}
+		{% set defaultInputAttributes = defaultInputAttributes|merge({aria: ariaAttrs}) %}
+		{# input #}
+		{{tag('input', defaultInputAttributes)}}
+	{% endset %}
+	{# wrap in field container #}
+	{{_self.formField(html, inputAttributes, errors)}}
+{% endmacro %}
+
+{% macro formFieldCheckbox(inputAttributes, label = null, errors = []) %}
+	{# defaults #}
+	{% set defaultInputAttributes = {
+		type: 'checkbox',
+	} %}
+	{% set defaultLabelAttributes = {
+		class: ['checkbox']
+	} %}
+	{# aria #}
+	{% set ariaAttrs = {
+		required: inputAttributes.required ?? null,
+	} %}	
+	{# errors #}
+	{% if errors is not empty %}
+		{% set ariaAttrs = ariaAttrs|merge({invalid: true}) %}
+		{% if inputAttributes.id ?? false %}
+			{% set ariaAttrs = ariaAttrs|merge({errormessage: inputAttributes.id ~ '-errors'}) %}
+		{% endif %}			
+	{% endif %}
+	{# add aria attributes #}
+	{% set defaultInputAttributes = defaultInputAttributes|merge({aria: ariaAttrs}) %}
+	{# label text and input #}
+	{% set defaultInputAttributes = defaultInputAttributes|merge(inputAttributes) %}
+	{% set insideHtml %}
+		{{ hiddenInput(defaultInputAttributes.name, '0') }}
+		{{tag('input', defaultInputAttributes)}}
+		{{label}}
+	{% endset %}
+	{# wrap label text and input in label element #}
+	{% set htmlField %}
+		{% set defaultLabelAttributes = defaultLabelAttributes|merge({html: insideHtml}) %}			
+		{{_self.formLabel(defaultLabelAttributes)}}
+	{% endset %}
+	{# wrap in field container #}
+	{{_self.formField(htmlField, defaultInputAttributes, errors)}}	
+{% endmacro %}
+
+{% macro formFieldSelect(selectAttributes, label = null, options = [], errors = []) %}	
+	{# defaults #}
+	{% set selectWrapperAttributes = {
+		class: ['select', (errors is not empty ? 'is-danger')],
+	} %}
+	{% set defaultSetectAttributes = {
+
+	} %}
+	{# aria #}
+	{% set ariaAttrs = {
+		required: selectAttributes.required ?? null,
+	} %}		
+	{% set defaultSetectAttributes = defaultSetectAttributes|merge(selectAttributes) %}
+	{% set html %}		
+		{# label #}
+		{% if label %}
+			{% set labelAttributes = {
+				text: label,
+				for: selectAttributes.id ?? null,
+			} %}
+			{{_self.formLabel(labelAttributes)}}
+		{% endif %}
+		{# select wrapper #}
+		<div {{attr(selectWrapperAttributes)}}>			
+			{# errors #}
+			{% if errors is not empty %}
+				{% set ariaAttrs = ariaAttrs|merge({invalid: true}) %}
+				{% if selectAttributes.id ?? false %}
+					{% set ariaAttrs = ariaAttrs|merge({errormessage: selectAttributes.id ~ '-errors'}) %}
+				{% endif %}				
+			{% endif %}
+			{% set defaultSetectAttributes = defaultSetectAttributes|merge({aria: ariaAttrs}) %}				
+			{# select #}
+			<select {{attr(defaultSetectAttributes)}}>
+			{% for option in options %}
+				{{tag('option', {
+					value: option.value,
+					label: option.label,
+					selected: option.value == defaultSetectAttributes.value,
+				}) }}
+			{% endfor %}
+			</select>
+		</div>
+	{% endset %}
+	{# wrap in field container #}
+	{{_self.formField(html, defaultSetectAttributes, errors)}}
+{% endmacro %}
+
+{% macro formFieldButton(buttonParams) %}
+	{# defaults #}
+	{% set defaultAttributes = {
+		type: 'submit',
+		class: ['button'],
+	} %}
+	{% set defaultAttributes = defaultAttributes|merge(buttonParams) %}
+	{# button element #}
+	{% set html %}
+		{{tag('button', defaultAttributes)}}
+	{% endset %}
+	{# wrap in field container #}
+	{{_self.formField(html)}}	
+{% endmacro %}

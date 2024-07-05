@@ -1,0 +1,5 @@
+description: ''
+handle: nurseries
+name: Nurseries
+permissions:
+  - 'editglobalset:a6d692f8-2829-4837-bb47-067f01e8e78a' # Nurseries

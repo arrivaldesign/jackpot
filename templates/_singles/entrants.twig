@@ -1,0 +1,93 @@
+{% extends '_layout' %}
+
+	{% macro monthNameFromNumber(monthNumber) %}
+	{{ date('2024-' ~ monthNumber ~ '-01') | date('F') }}
+	{% endmacro %}
+
+	{% block content %}
+    {% if getCookie('pin') == 1066 %}
+	<section class="feature static">
+		<div class="wrap">
+			<div bp="grid vertical-center">
+				<div bp="12" class="content">
+					<h1>{{date()|date('F')}} Draw Entrants</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section entrants">
+		<div class="wrap">
+			{% set orders = craft.enupalStripe.getAllOrders() %}
+			<table id="orderTable">
+				<thead>
+					<tr>
+						<th>Order Number</th>
+						<th>Customer Name</th>
+						<th>Email Address</th>
+						<th>Nominated Nursery</th>
+						<th>Monthly Subscription</th>
+						<th>Number of Entries</th>
+						<th>Date Entered</th>
+					</tr>
+				</thead>
+				<tbody>
+			{% for order in orders %}
+				{% set subscription = order.getSubscription() %}
+				{% set extraFields = order.getFormFields() %}
+				{% if subscription.status == 'active' %}
+					{% set paymentForm = order.getPaymentForm() %}
+					{% set subMonth = subscription.startDate|date('m') %}
+					{% if subMonth == now|date('m') %}
+						{% set nurseryQuery = craft.globalSets().handle('nurseries').siteId(1) %}
+						{% set nurseryGlobal = nurseryQuery.one() %}
+						{% set userName = craft.users.id(extraFields.user).one() %}
+					<tr>
+						<td>{{ order.number }}</td>
+						<td>{{ userName.fullName }}</td>
+						<td>{{ order.email }}</td>
+						<td>
+							{% for row in nurseryGlobal.nurseryDetails %}
+								{% if row.id == extraFields.nursery %}
+									{{ row.nurseryName }}
+								{% endif %}
+							{% endfor %}
+						</td>
+						<td>{{ order.totalPrice|currency(order.currency) }}</td>
+						<td>{{ extraFields.entries }}</td>
+						<td>{{ order.dateOrdered|date('F d, Y') }}</td>
+					</tr>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
+    {% else %}
+        {% redirect "login" %}
+    {% endif %}
+	{% js %}
+	
+	$(document).ready(function() {
+		$('#orderTable').DataTable( {
+			"pageLength": 10,
+			"order": [[ 0, "asc" ]],
+			"columnDefs" : [{"targets":1, "type":"date-eu"}],
+			"language": {
+				paginate: {
+					next: '<i class="fa fa-chevron-right">',
+					previous: '<i class="fa fa-chevron-left">'  
+				},
+				search: "", searchPlaceholder: "Search"
+			},
+			"oLanguage": {
+			"sInfo" : "_START_ to _END_ of _TOTAL_",
+			"infoFiltered": "(_MAX_ total)"
+			},
+		});
+		$.fn.DataTable.ext.pager.numbers_length = 10;
+		$("#clientList_filter :input").before('<i class="fa fa-search"></i>');
+	});
+	
+	{% endjs %}
+{% endblock %}

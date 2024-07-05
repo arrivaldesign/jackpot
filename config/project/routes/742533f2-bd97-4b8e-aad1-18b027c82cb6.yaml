@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 8
+template: _singles/about
+uriParts:
+  - about
+uriPattern: about

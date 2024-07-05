@@ -1,0 +1,75 @@
+{% extends '_layout' %}
+
+{% if currentUser == '' %}
+	{% redirect "login" %}
+{% endif %}
+
+{% set pageTitle = 'Sign in'|t('app') %}
+{% set orders = craft.enupalStripe.getAllOrders() %}
+{% set currSubscription = '' %}
+{% set currEntries = '' %}
+{% set currOrderID = '' %}
+{% set planStatus = '' %}
+{% set planEnd = '' %}
+{% set userID = '' %}
+{% for order in orders %}
+	
+	{% set extraFields = order.getFormFields() %}
+	{% set subsForm = order.getSubscription() %}
+
+	{% for handle, value in extraFields %}
+		{% if handle == 'user' %}
+			{% set userID = value %}
+		{% endif %}
+	{% endfor %}
+
+	{% if currentUser.id == userID %}
+		{% if subsForm.status == 'active' %}
+			{% set currSubscription = order.totalPrice|currency(order.currency, stripZeros=true) %}
+			{% set currEntries = extraFields.entries %}
+			{% set currOrderID = order.id %}
+			{% set planStatus = subsForm.status %}
+			{% set planEnd = subsForm.endDate|date %}
+		{% endif %}
+	{% endif %}
+	
+{% endfor %}
+{% block content %}
+	<section class="feature static">
+		<div class="wrap">
+			<div bp="grid vertical-center">
+				<div bp="12" class="content">
+					<h1>Your Account</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section register">
+		<div class="wrap">
+			<div bp="grid vertical-center text-center" class="mx-lg-n5 account">
+				<div bp="5@md 4@lg offset-2@lg" class="box">
+					<div>
+						<h2 class="pt-0">Current<br>Subscription</h2> 
+						<div class="entry-box headfont">
+							{% if planStatus == 'active' %}
+							<p><strong>{{ currSubscription }}</strong>/month</p>
+							<p><strong>{{ currEntries }} Entries</strong> (3x more entries)</p>
+							<p>Your Subscription Expires: <strong>{{ planEnd }}</strong></p>
+							<p><a href="/account/settings">Cancel Your Subscription</a></p>
+							{% else %}
+							No current active subscription - <a href="/enter">enter here</a>.
+							{% endif %}
+						</div>
+					</div>
+				</div>
+                <div bp="7@md 6@lg" class="box buttons">
+					<a href="/account/entries">My Entries</a>
+					<a href="/account/purchase-history">Purchase History</a>
+					<a href="/account/manage-subscription">Manage Subscription</a>
+					<a href="/account/settings">Account Settings</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% include "_includes/blog-listing.twig" with { posts: craft.entries().section('blog').limit(1).all() } only %}
+{% endblock %}

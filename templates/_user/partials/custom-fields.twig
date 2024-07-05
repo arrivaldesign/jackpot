@@ -1,0 +1,31 @@
+{# requires "model" and "field" objects #}
+{% import '_user/partials/form-macros' as m %}
+{% set class = className(field) %}
+{% switch class %}
+
+	{% case 'craft\\fields\\PlainText' %}
+		{{m.formFieldInput({
+			id: field.handle,
+			type: 'text',
+			name: 'fields['~field.handle~']',			
+			value: model[field.handle],
+			required: field.required,
+		}, field.name, model.getErrors(field.handle)) }}
+
+	{% case 'craft\\fields\\Lightswitch' %}
+		{{m.formFieldCheckbox({
+			id: field.handle,
+			name: 'fields['~field.handle~']',			
+			checked: model[field.handle],
+			required: field.required,
+		}, field.name, model.getErrors(field.handle)) }}
+
+	{% case 'craft\\fields\\Dropdown' %}
+		{{m.formFieldSelect({
+			id: field.handle,
+			name: 'fields['~field.handle~']',			
+			value: model[field.handle],
+			required: field.required,
+		}, field.name, field.options, model.getErrors(field.handle)) }}
+
+{% endswitch %}

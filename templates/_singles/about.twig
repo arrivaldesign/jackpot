@@ -1,0 +1,40 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+		    <section class="feature about">
+    			<div class="wrap">
+    				<div bp="grid vertical-center">
+    					<div bp="5@lg" class="content">
+    						<h1>About us</h1>
+                            <h3 class="pt-0 pb-4">Fuelling child development with fun</h3>
+                            <p>Nursery Jackpot is a fun and friendly fundraising initiative where you can support your local nursery &ndash; and help raise money for charities.</p>
+                            <p>Sign up to play and you could win your child&rsquo;s nursery placement for an entire year!</p>
+                            <p>Designed with parents and nurseries in mind, we are committed to supporting and transforming the lives of young children.</p>
+                            <p>Combine the power of your donation with a positive contribution to society &ndash; and help us support a range of fantastic projects.</p>
+    					</div>
+                        <div bp="first last@md 6@md offset-7@lg" class="image">
+                            <img src="/images/about-image.webp" alt="" width="1056" height="705" class="rounded double">
+                            <div class="star brand"><i class="fa-solid fa-star"></i></div>
+                        </div>
+    				</div>
+    			</div>
+    		</section>
+            <section class="section halfbottom">
+                <div class="wrap">
+                    <div bp="grid vertical-center">
+                        <div bp="5@md" class="mr-xl-n6 image">
+                            <img src="/images/about-image2.webp" alt="" width="1056" height="705" class="rounded double">
+                        </div>
+                        <div bp="6@md offset-7@md" class="ml-xl-4">
+                            <h2 class="medium">Playing our Prize Draw is child’s play</h2>
+                            <p>Nursery Jackpot is a Prize Draw which helps raise money for charities. The more players who join us, the more charities we can help!</p>
+                            <p>Not only can you win a fantastic prize, good causes will also receive essential support. Sign up to play today and pay &pound;10 per month. For the price of two drinks in the pub, you will automatically be entered into every draw.</p>
+                            <p>You must be aged 18 over to play. Terms and conditions apply. For more information, please see our Official Rules.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% include "_includes/prize-banner.twig" %}
+            {% include "_includes/cta.twig" %}
+            {% include "_includes/blog-listing.twig" with { posts: craft.entries().section('blog').limit(1).all() } only %}
+{% endblock %}

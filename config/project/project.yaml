@@ -1,0 +1,240 @@
+dateModified: 1718803135
+email:
+  fromEmail: chris@arrivaldesign.co.uk
+  fromName: 'Nursery Jackpot'
+  replyToEmail: null
+  template: ''
+  transportSettings:
+    host: mail.smtp2go.com
+    password: 4KingstonRoad
+    port: '587'
+    useAuthentication: '1'
+    username: arrival
+  transportType: craft\mail\transportadapters\Smtp
+fs:
+  blog:
+    hasUrls: true
+    name: Blog
+    settings:
+      path: '@webroot/assets/blog'
+    type: craft\fs\Local
+    url: '@web/assets/blog'
+  sitewide:
+    hasUrls: true
+    name: Sitewide
+    settings:
+      path: '@webroot/assets/sitewide'
+    type: craft\fs\Local
+    url: '@web/assets/sitewide'
+meta:
+  __names__:
+    0b0ac771-fd05-4192-91e5-e4835c35afaa: 'Nursery Name' # Nursery Name
+    0d3a95d2-6843-4324-b92e-9c118238fa7f: Common # Common
+    01a73c71-a51a-4926-a1fb-a05e3327e942: Required # Required
+    1ad13c2c-9895-48c8-9bac-78540cd5c23e: 'Min Value' # Min Value
+    3a210524-535b-43fe-83b5-2b86f74f62dc: Blog # Blog
+    3c4ce1ec-bd52-4c96-b132-c03d303bc013: Label # Label
+    3d897cea-a76a-4a56-acc8-a529f3cd416f: Options # Options
+    04abfb88-f252-4c3c-a26e-da404fc79dc5: Register # Register
+    4dac9610-d05d-436d-9411-c8946b442a92: FAQs # FAQs
+    4eea262a-cc00-4ba2-b352-d482426c1474: Label # Label
+    6a6ea091-d03c-417d-afea-0d102e3eab92: Blog # Blog
+    07a2c5a6-de12-4597-bf60-ef9481155b16: 'Post Content' # Post Content
+    7de772f9-63e9-4d3c-9a4f-c1bd896a6e1b: 'Nursery ID' # Nursery ID
+    08aac443-159d-4624-959c-52132baa560b: Required # Required
+    8dc1c174-fc5c-4e38-b1d3-ef9bbdd49440: Required # Required
+    08f0ae91-70d6-4a9f-9006-8964d685ac77: 'Setup Fee' # Setup Fee
+    9b185155-bbe0-4bdd-8297-12108af8f0aa: 'Pin Number' # Pin Number
+    9c0b7811-27f0-4641-a2df-f3b3fd99623e: 'Nursery Jackpot' # Nursery Jackpot
+    9dc32cd3-d732-4cd0-a0b2-8bb219f47df8: 'Nursery Jackpot' # Nursery Jackpot
+    18be1a31-54f7-425c-8595-05da9a3aef2e: Options # Options
+    19a14f17-2624-45ef-97ab-cdd92536f21a: FAQs # FAQs
+    20b90a9e-4755-4b0f-85e5-76c3cb937025: Required # Required
+    32d35be5-227f-4b2b-8d7f-aaa0ce044fc3: Nurseries # Nurseries
+    35aea10e-d80a-42f2-96cd-dbe579e56d94: Text # Text
+    44ebbcb7-5c43-4666-9b22-ec4bc30a64bc: Register # Register
+    51a2f4b0-5482-47ec-93e3-8d6c4048acaf: Label # Label
+    58e9c4ed-077d-4f82-86eb-354c904fe253: Image # Image
+    63fd738d-c938-4980-9627-2d53ee057cf8: Number # Number
+    66cde90c-8d0e-4567-81e5-a52ba4dd229d: Wysiwyg # Wysiwyg
+    70e778b7-ae1e-4b86-942c-e2a1bad6d0db: Handle # Handle
+    73de1189-7441-4cd7-a682-363f60c4eab0: Details # Details
+    96d2f43d-6052-46dd-85c9-5d6e6c2ec51a: 'Home Page' # Home Page
+    254e9adc-0c7e-457a-8c94-f5101278b074: 'Holding Page' # Holding Page
+    293b13cb-3eb7-4a01-bcf2-6dca51d5b8f2: 'Radio Buttons' # Radio Buttons
+    342bbcfa-1366-4d3d-9f65-017e650bdd04: Handle # Handle
+    0546ea64-7358-496d-87da-be9184fc9655: Label # Label
+    674cbfed-c922-4e29-a598-fe0b9cfc61a4: 'Basic Form Fields' # Basic Form Fields
+    744e843f-4e49-4349-8591-f604b23c0d8e: Handle # Handle
+    890ab19a-db6f-4188-ad11-bcb5e5122fe6: 'Initial Rows' # Initial Rows
+    3860ee34-f854-4b24-9477-ef53e4eda957: 'Custom Label' # Custom Label
+    6689d232-0403-42f6-a6c4-02e40477120d: 'Feature Image' # Feature Image
+    17831d0b-2628-4f3d-87fc-f12d20e849f0: Text # Text
+    31614d76-ae3f-4d68-b67c-aec5c02cb46d: 'Max Value' # Max Value
+    83746f4a-3d2e-442e-b63a-da9f2012c124: CheckBoxes # CheckBoxes
+    309873a0-2eff-45e2-8d2e-9b5cbe94c1c8: Paragraph # Paragraph
+    8678235a-837d-4f0f-a5de-9d8eda9fe9be: Hidden # Hidden
+    66879677-be49-414b-8ee3-2b10b33a86cc: 'Hidden Value' # Hidden Value
+    75480194-ca7f-4d84-85d0-9235dd63e837: Default # Default
+    a4af28ea-bbba-4d93-aa15-c4d50b557241: Capacity # Capacity
+    a6d692f8-2829-4837-bb47-067f01e8e78a: Nurseries # Nurseries
+    b89cac6f-adb7-4f5f-989e-899cf5aff4dd: 'Blog Post Fields' # Blog Post Fields
+    b92bd8cf-5142-4835-8fb2-7ba810219633: 'Nursery Details' # Nursery Details
+    be8a3a70-687d-4779-9988-ac0db6851d5b: 'Select Plan' # Select Plan
+    be9e0691-c326-4229-ad18-608999bd65af: 'Subscription Plan' # Subscription Plan
+    c03663bd-eb6d-4e89-b3f4-5f896a0925a4: Dropdown # Dropdown
+    c27f6391-f4ca-4599-b40f-88ef8a1ffa47: 'Home Page' # Home Page
+    c34ec5e9-3de6-4077-bd7c-a5f31be5ae58: Placeholder # Placeholder
+    c3395c0f-e509-4d93-9a84-33e3eabe3095: Placeholder # Placeholder
+    cd6345ef-75fe-4e6b-bdb0-a2c305b420f9: Handle # Handle
+    cfababc4-8920-4bd6-8367-2580e77ffed1: Handle # Handle
+    d0e555e1-836e-42fd-85c3-86616d623a9b: Image # Image
+    d9604c6e-9441-4ad8-9ec5-2739b929d201: 'Single Line' # Single Line
+    dba42034-9e13-4bbd-8c1f-69093e881c52: 'Plain Text' # Plain Text
+    df5d098e-40e6-486d-9069-765e0526331a: Label # Label
+    df88a67e-e04a-4905-b201-77d4c8817fdc: Blog # Blog
+    ea71e499-bbe6-4ef0-9d4b-27a78c583fb1: Options # Options
+    ed80db20-85e1-449d-8e46-e4c93c8321ee: 'Ofsted Number' # Ofsted Number
+    ee381a2a-055b-473e-9226-2bf146253c5b: SEO # SEO
+    f7ce2dd7-a2fe-4f16-8c58-ce6d4eaa2c17: Required # Required
+    f408a044-177d-45e0-ab87-c674f6dff93e: 'Add Plan' # Add Plan
+    f921c82b-6318-426d-a146-215f564b3257: Label # Label
+    f2973c46-8e81-458f-ac59-1a537fc7e458: 'Nursery Details' # Nursery Details
+    f3561a10-9d83-48b1-9417-27a956ea16c0: 'Site Wide' # Site Wide
+    f59269e4-b3c3-4ee4-8eea-6f5245d1227d: Handle # Handle
+    f3013226-323e-4a7d-9d0f-c673bb5c2d29: 'Holding Page' # Holding Page
+    fc2b7317-ded9-462b-a9e2-a881a5a79724: Required # Required
+    fc2c7df1-a7db-45f0-9b6e-3abd50a0c9b1: Handle # Handle
+plugins:
+  cookies:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  craft-excerptify:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  enupal-stripe:
+    edition: lite
+    enabled: true
+    licenseKey: G54SPEX4NJKK74XX0K9V16TL
+    schemaVersion: 5.5.0
+    settings:
+      adminNotificationRecipients: null
+      adminNotificationReplyToEmail: null
+      adminNotificationSenderEmail: null
+      adminNotificationSenderName: null
+      adminNotificationSubject: null
+      adminNotificationTemplate: null
+      adminTemplateOverride: null
+      cancelAtPeriodEnd: '1'
+      capture: '1'
+      cartAllowPromotionCodes: false
+      cartAutomaticTax: false
+      cartCancelUrl: ''
+      cartCurrency: USD
+      cartEnableBillingAddress: false
+      cartEnableShippingAddress: false
+      cartLanguage: auto
+      cartPaymentMethods:
+        - card
+      cartSubmitType: null
+      cartSuccessUrl: ''
+      chargeDescription: 'Order from {email}'
+      chargeType: null
+      currentUserEmail: '1'
+      customPlanName: 'Custom Plan - {planId}'
+      customerNotificationReplyToEmail: null
+      customerNotificationSenderEmail: null
+      customerNotificationSenderName: null
+      customerNotificationSubject: null
+      customerNotificationTemplate: null
+      customerTemplateOverride: null
+      defaultCurrency: GBP
+      displayTaxLabel: 0
+      enableAdminNotification: null
+      enableConnect: 0
+      enableCustomerNotification: null
+      enableTaxes: 0
+      enableVendorNotification: 0
+      globalRate: 1
+      liveClientId: null
+      livePublishableKey: pk_live_51P94klEE4hWuve2WSEx8XNMyWl48EGI3EUepGPJ2MRLL81R5mCYHCbcVOpODP90YSJHxP3wAr4aZXm4KcZ7yfNwv00rx8oJa1j
+      liveSecretKey: ''
+      liveWebhookSigningSecret: null
+      loadCss: '1'
+      loadJquery: '1'
+      oneTimeSetupFeeLabel: 'One time set-up fee'
+      plansWithNickname: ''
+      returnUrl: ''
+      syncDefaultFormId:
+        - '3352'
+      syncDefaultStatusId: '1'
+      syncEnabledDateRange: ''
+      syncEndDate:
+        __assoc__:
+          -
+            - date
+            - '2024-06-13 00:00:00.000000'
+          -
+            - timezone_type
+            - 3
+          -
+            - timezone
+            - America/Los_Angeles
+      syncIfUserExists: ''
+      syncLimit: '500'
+      syncStartDate:
+        __assoc__:
+          -
+            - date
+            - '2024-05-14 00:00:00.000000'
+          -
+            - timezone_type
+            - 3
+          -
+            - timezone
+            - America/Los_Angeles
+      syncType: '2'
+      tax: null
+      taxType: 0
+      testClientId: null
+      testMode: '1'
+      testPublishableKey: pk_test_51P94klEE4hWuve2WYFPc64vIVndQ8HsZzIPrfhlPkkEStKPE8Er1poVc7nyy7rSXlVQ7010jyUbAcFL0odxuf9Ko008DZ9zJHl
+      testSecretKey: sk_test_51P94klEE4hWuve2WAYeYrKIM8FIjrFri5SkLDAf8EsBAihYayTaXTNuTmMA2tpt1WNFxDR5DHA6ihncj9tdbtqzl00WNgyK1lJ
+      testWebhookSigningSecret: null
+      updateCustomerEmailOnStripe: ''
+      useSca: ''
+      vendorNameFormat: null
+      vendorNotificationReplyToEmail: null
+      vendorNotificationSenderEmail: null
+      vendorNotificationSenderName: null
+      vendorNotificationSubject: null
+      vendorNotificationTemplate: null
+      vendorPaymentType: manually
+      vendorSkipAdminReview: 0
+      vendorTemplateOverride: null
+      vendorUserFieldId: null
+      vendorUserGroupId: null
+  express-forms:
+    edition: lite
+    enabled: true
+    schemaVersion: 1.0.2
+  feed-me:
+    edition: standard
+    enabled: true
+    schemaVersion: 5.1.0.1
+  seo:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.2.0
+  tinymce:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: pro
+  live: true
+  name: 'Nursery Jackpot'
+  schemaVersion: 4.5.3.0
+  timeZone: America/Los_Angeles

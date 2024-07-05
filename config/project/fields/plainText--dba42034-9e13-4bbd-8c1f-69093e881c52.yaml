@@ -1,0 +1,19 @@
+columnSuffix: egrgixac
+contentColumnType: text
+fieldGroup: 0d3a95d2-6843-4324-b92e-9c118238fa7f # Common
+handle: plainText
+instructions: null
+name: 'Plain Text'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  columnType: null
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

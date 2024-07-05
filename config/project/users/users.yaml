@@ -1,0 +1,7 @@
+allowPublicRegistration: true
+deactivateByDefault: false
+defaultGroup: 32d35be5-227f-4b2b-8d7f-aaa0ce044fc3 # Nurseries
+photoSubpath: null
+photoVolumeUid: null
+requireEmailVerification: false
+validateOnPublicRegistration: false

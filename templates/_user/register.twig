@@ -1,0 +1,54 @@
+{% extends '_layout' %}
+
+{% requireGuest %}
+
+{% set pageTitle = 'Sign up'|t('app') %}
+
+{% set user = user ?? create({ class: 'craft\\elements\\User' }) %}
+
+{% set submitButtonAttributes = {
+	text: 'Sign up'|t,
+	type: 'submit',
+} %}
+
+{% block content %}
+	<section class="feature static">
+		<div class="wrap">
+			<div bp="grid vertical-center">
+				<div bp="12" class="content">
+					<h1>Register your Nursery</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section halfbottom">
+		<div class="wrap">
+			{# embed #}
+			{% embed '_user/partials/base-form' %}
+
+				{% block formContent %}
+					{{ actionInput('users/save-user') }}
+					{{ redirectInput(alias(currentSite.baseUrl)) }}
+
+					{# success message #}
+					{% if craft.app.projectConfig.get('users')['requireEmailVerification'] == true %}
+						{{ successMessageInput('User registered. Please verify your email using the link we sent to your email address.'|t) }}
+					{% endif %}
+
+					{# common user fields #}
+					{% include '_user/partials/user-fields' %}
+
+					{# submit button #}
+					{% import '_user/partials/form-macros' as m %}
+					{{m.formFieldButton(submitButtonAttributes)}}
+				{% endblock %}
+
+			{% endembed %}
+			</div>
+		</div>
+	</section>
+	{% include "_includes/prize-banner.twig" %}
+	{% include "_includes/cta.twig" %}
+	{% include "_includes/blog-listing.twig" with { posts: craft.entries().section('blog').limit(1).all() } only %}
+
+{% endblock %}

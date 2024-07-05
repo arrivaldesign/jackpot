@@ -1,0 +1,34 @@
+<section class="section testimonials">
+    <div class="wrap" data-aos="fade-right">
+        {% if firstSegment == '' %}
+        {% for image in testimonials.testimonialTopImage.all() %}
+            <img src="{{ image.getUrl(testimonialTopImage) }}" alt="" width="{{ image.getWidth() }}" height="{{ image.getHeight() }}" class="overlap" />
+        {% endfor %}
+        {% endif %}
+        <div class="swiper-container testimonial-swiper">
+            <div class="swiper-wrapper">
+            {% for block in testimonials.testimonialContent %}
+            {# testimonials is the name of the global, testimonialContent is the name of the matrix #}
+                <div class="swiper-slide">
+                    <div bp="grid vertical-center">
+                        <div bp="9@lg offset-3@lg" data-aos="fade">
+                            <p><span>“</span>{{ block.testimonialText }}<span>”</span></p>
+                            <p>{{ block.testimonialAuthor }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div bp="grid">
+            <div bp="5@lg offset-3@lg" class="paging">
+                <div class="swiper-pagination"></div>
+            </div>
+            <div bp="5@md" class="pic" data-aos="fade-left">
+            {% for image in testimonials.testimonialBottomImage.all() %}
+                <img src="{{ image.getUrl(testimonialBottomImage) }}" alt="" width="{{ image.getWidth() }}" height="{{ image.getHeight() }}" />
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>{{ craft.config.secure }}

@@ -1,0 +1,357 @@
+{% extends "_layout.twig" %}
+
+{% macro errorList(errors) %}
+    {% if errors %}
+        {{ ul(errors, {class: 'errors'}) }}
+    {% endif %}
+{% endmacro %}
+
+{# `user` is defined if the form returns validation errors. #}
+{% set user = user ?? null %}
+{% set type = craft.app.request.getBodyParam('type') %}
+{% if type == 'enupalStripe-multi-plan-radiobutton-2' %}
+    {% set subscription = '£20' %}
+    {% set entries = 80 %}
+{% elseif type == 'enupalStripe-multi-plan-radiobutton-3' %}
+    {% set subscription = '£30' %}
+    {% set entries = 150 %}
+{% else %}
+    {% set subscription = '£10' %}
+    {% set entries = 30 %}
+{% endif %}
+
+{% block content %}
+		    <section class="feature static">
+    			<div class="wrap">
+    				<div bp="grid vertical-center">
+    					<div bp="12" class="content">
+    						<h1>Checkout</h1>
+    					</div>
+    				</div>
+    			</div>
+    		</section>
+            <section class="section halfbottom register">
+                <div class="wrap">
+                    {% if craft.app.session.getFlash('notice') == 'Password reset email sent.'|t %}
+                    <div bp="grid vertical-center">
+                        <div bp="10@lg offset-2@lg text-center" class="success mx-lg-n5 mb-5">
+                            <h4 class="p-0">Your request has been received, please check your email for further instructions.</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div bp="grid vertical-center">
+                        <div bp="12 offset-2@lg" class="mx-lg-n5">
+                            <h2 class="pt-0 pb-5 ml-lg-2">Your Purchase</h2>
+                        </div>
+                    </div>
+                    <div bp="grid vertical-center text-center" class="mx-lg-n5">
+                        <div bp="5@md 4@lg offset-2@lg" class="box">
+                            <div>
+                                <h2 class="pt-0">Subscription</h2> 
+                                <div class="entry-box headfont">
+                                    <p><strong>{{ subscription }}</strong>/month</p>
+                                    <p><strong>{{ entries }} Entries</strong> (3x more entries)</p>
+                                    <p><i class="fa-sharp fa-regular fa-check"></i> Cancel at any time</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div bp="7@md 6@lg" class="box">
+                            <div class="tabs">
+                                <button class="btn brandbg2 whitetext nowidth" id="create">Create an Account</button>
+                                <button class="btn brandbg3 whitetext nowidth" id="signin">Sign In</button>
+                            </div>
+                            <div class="account">
+                                <div class="create">
+                                    <h2 class="pt-0">Create an Account</h2> 
+                                    <div class="form-fields">
+                                        <form method="post" accept-charset="UTF-8" id="accForm">
+                                            {{ csrfInput() }}
+                                            {{ actionInput('users/save-user') }}
+
+                                            <div>
+                                                {{ input('text', 'fullName', user.fullName ?? null, {
+                                                    id: 'fullName',
+                                                    placeholder: 'Full Name',
+                                                    class: 'input required',
+                                                }) }}
+                                                {{ user ? _self.errorList(user.getErrors('fullName')) }}
+                                                <label for="fullName">Full Name</label>
+                                            </div>
+
+                                            <div>
+                                                {{ input('email', 'email', user.email ?? null, {
+                                                    id: 'email',
+                                                    placeholder: 'Email Address',
+                                                    class: 'input required',
+                                                }) }}
+                                                {{ user ? _self.errorList(user.getErrors('email')) }}
+                                                <label for="email">Email Address</label>
+                                            </div>
+
+                                            <div>
+                                                {{ input('password', 'password', null, {
+                                                    id: 'password-field',
+                                                    placeholder: 'Password',
+                                                    class: 'input required',
+                                                }) }}
+                                                {{ user ? _self.errorList(user.getErrors('password')) }}
+                                                <label for="password">Password</label>
+                                                <span toggle="#password-field" class="fa-sharp fa-solid fa-eye toggle-password"></span>
+                                            </div>
+
+                                            <div>
+                                                <div class="styled-select">
+                                                    <select id="nurseryID" name="fields[nurseryID]" class="required">
+                                                        <option value="">Your child's nursery</option>
+                                                        {% set myGlobalSetQuery = craft.globalSets().handle('nurseries').siteId(1) %}
+                                                        {% set globalSet = myGlobalSetQuery.one() %}
+                                                        {% for block in globalSet.nurseryDetails %}
+                                                            {% if block.pinNumber %}
+                                                                <option value="{{ block.id }}">{{ block.nurseryName }}</option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <button class="btn brandbg whitetext stroke decal caps rounded mt-3" id="submit">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="signin">
+                                    <h2 class="pt-0">Sign In</h2>
+                                    <div class="form-fields">
+                                        <div class="message"></div>
+                                        <form method="post" accept-charset="UTF-8" id="signForm">
+                                            {{ csrfInput() }}
+                                            {{ actionInput('users/login') }}
+                                            <div>
+                                                {{ input('email', 'loginName', user.email ?? null, {
+                                                    id: 'loginName',
+                                                    placeholder: 'Email Address',
+                                                    class: 'input required',
+                                                }) }}
+                                                {{ user ? _self.errorList(user.getErrors('email')) }}
+                                                <label for="loginName">Email Address</label>
+                                            </div>
+
+                                            <div>
+                                                {{ input('password', 'password', null, {
+                                                    id: 'password',
+                                                    placeholder: 'Password',
+                                                    class: 'input required',
+                                                }) }}
+                                                {{ user ? _self.errorList(user.getErrors('password')) }}
+                                                <label for="password">Password</label>
+                                                <span toggle="#password" class="fa-sharp fa-solid fa-eye toggle-password2"></span>
+                                            </div>
+                                            <input type="hidden" name="uid" id="uid">
+                                            <div bp="grid vertical-center" class="mt-3">
+                                                <div bp="5@lg">
+                                                    <button class="btn brandbg4 whitetext stroke decal caps rounded" id="submit">Login</button>
+                                                </div>
+                                                <div bp="7@lg text-right">
+                                                    <a href="#" data-hystmodal="#modal" class="forgot">Forgotten your password?</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="subscribe">
+                                    <button class="caplink back">Back</button>
+                                    <h2 class="pb-4">Enter your card details</h2> 
+                                    {#% set options = { email: email } %#}
+                                    {% do craft.enupalStripe.addVariables({ nursery: '', entries: entries, user: user }) %}
+                                    {{ craft.enupalStripe.paymentForm('nurseryDraw') }}
+                                    {% do view.registerAssetBundle("yii\\web\\JqueryAsset", 0) %}
+                                    <button class="btn brandbg whitetext stroke decal caps rounded mt-4" id="final">Make Payment</button>
+                                    <p class="small pt-5">By continuing with your payment, you agree that any subscription will automatically renew at the price and frequency listed on this page until it ends or you cancel.</p>
+                                    <p class="small">All cancellations are subject to the <a href="#">cancellation policy</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% include "_includes/prize-banner.twig" %}
+            <section class="section benefits-icons mt-lg-n5">
+                <div class="wrap">
+                    <div bp="grid text-center">
+                        <div bp="12">
+                            <h2>Benefits of a subscription</h2>
+                        </div>
+                    </div>
+                    <div bp="grid text-center">
+                        <div bp="6@sm 3@lg" class="item">
+                            <i></i>
+                            <h3 class="h4">Don’t forget a draw!</h3>
+                            <p>Enjoy automatic entry into every giveaway.</p>
+                        </div>
+                        <div bp="6@sm 3@lg" class="item">
+                            <i></i>
+                            <h3 class="h4">More Entries</h3>
+                            <p>Benefit from 30 entries every month for just £10.</p>
+                        </div>
+                        <div bp="6@sm 3@lg" class="item">
+                            <i></i>
+                            <h3 class="h4">Give Regularly</h3>
+                            <p>Effortlessly support our charity partners.</p>
+                        </div>
+                        <div bp="6@sm 3@lg" class="item">
+                            <i></i>
+                            <h3 class="h4">Easy To Cancel</h3>
+                            <p>Stop or pause your subscription at any time.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="hystmodal" id="modal" aria-hidden="true">
+                <div class="hystmodal__wrap">
+                    <div class="hystmodal__window" role="dialog" aria-modal="true">
+                        <div class="hystmodal__content">
+                            <button data-hystclose class="hystmodal__close">Close</button>
+                            <h2 class="h4">Reset your password</h2>
+                            <p>We will send you an email to reset your password. You will need to create an account before you're able to reset your password. If you enter an email address that hasn't been registered you won't receive any instructions.</p>
+                            <form method="post" accept-charset="UTF-8" id="forgotForm">
+                                {{ csrfInput() }}
+                                {{ actionInput('users/send-password-reset-email') }}
+
+                                <div class="relative">
+                                    {{ input('email', 'loginName', loginName ?? craft.app.user.rememberedUsername, {
+                                        id: 'loginName2',
+                                        placeholder: 'Email Address',
+                                        autocomplete: 'username',
+                                        class: 'input',
+                                        required: 'required',
+                                    }) }}
+                                    <label for="loginName2">Email Address</label>
+                                </div>
+
+                                <button class="btn brandbg whitetext stroke decal caps rounded fullwidth mt-2">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             {% js %}
+                $(document).ready(function(){
+
+                        $('#accForm').validate({
+                            errorPlacement: function(error, element) {
+                                if (element.attr("id") == "nurseryID") {
+                                    error.insertAfter(element);
+                                } else {
+                                    error.insertAfter('label[for="' + element.attr("name") + '"');
+                                }
+                            },
+                            submitHandler: function(form) {
+			                    var dataString = $(form).serialize();
+                                dataString += '&action=users/login';
+                                $.ajax({
+                                    url: "/",
+                                    type: form.method,
+                                    data: dataString,
+                                    dataType: 'json',
+                                    contentType: "application/x-www-form-urlencoded",
+                                    success: function(data) {
+                                        alert(data);
+                                        $(".register .create").addClass('hide-left');
+                                        $(".register .subscribe").addClass('show-right');
+                                    }         
+                                });
+                            }
+                        });
+
+                    $('.back').on('click', function(e) {
+                        $(".register .create").removeClass('hide-left');
+                        $(".register .subscribe").removeClass('show-right');
+                    });
+
+                    $('#create').on('click', function(e) {
+                        $(".register .create").removeClass('hide-left');
+                        $(".register .subscribe, .register .signin").removeClass('show-right');
+                        $(this).addClass('on').removeClass('off');
+                        $("#signin").addClass('off').removeClass('on');
+                    });
+
+                    $('#signin').on('click', function(e) {
+                        $(".register .create").addClass('hide-left');
+                        $(".register .signin").addClass('show-right');
+                        $(this).addClass('on').removeClass('off');
+                        $("#create").addClass('off').removeClass('on');
+                    });
+
+                    var val = '{{ type }}';
+                    if (val) {
+                        $("#" + val).prop("checked", true);
+                    } else {
+                        $("#enupalStripe-multi-plan-radiobutton-1").prop("checked", true);
+                    }
+
+                    $('#signForm').on('submit', function(e) {
+                        e.preventDefault();
+                        var formData = $(this).serialize();
+                        var btn = $('.btn', this);
+                        $('.signin .message').html('');
+                        btn.html('<i class="fa-solid fa-fan fa-spin fa-lg"></i>').addClass('spin-on');
+                        $.ajax({
+                            type:'POST',
+                            url: '/',
+                            dataType: 'json',
+                            data: formData,
+                            contentType: "application/x-www-form-urlencoded",
+                            success: function(result) {
+                                console.log(result);
+                                $(".register .signin").addClass('hide-left');
+                                $(".register .subscribe").addClass('show-right exists');
+                                $('#nurseryID').val(result.user.nurseryID);
+                                $('#fullName').val(result.user.fullName);
+                                $('#uid').val(result.user.id);
+                                $('#email').val(result.user.email);
+                                $('#password-field').val($('#password').val());
+                                btn.html('Login').removeClass('spin-on');
+                            },
+                            error: function(result) {
+                                $('.signin .message').html('<span>' + result.responseJSON.message + '</span>');
+                                btn.html('Login').removeClass('spin-on');
+                            }
+                        });
+                    });
+                    
+                    $('#final').on('click', function(e) {
+                        e.preventDefault();
+                        var formData = $('#accForm').serialize();
+                        var nid = $('#nurseryID').val();
+                        var email = $('#email').val();
+                        var uid = $('#uid').val();
+                        $(this).html('<i class="fa-solid fa-fan fa-spin fa-lg"></i>').addClass('spin-on');
+                        if ($(".register .subscribe").hasClass("exists")) {
+                            $("#enupalStripe-nursery").val(nid);
+                            $("#enupalStripe-user").val(uid);
+                            $("input[name='stripeElementEmail']").val(email);
+                            //$("input[name='enableCheckout']").val(1);
+                            //$("input[name='enupalStripe[email]']").val(email);
+                            $("form.enupal-stripe-form-elements .enupal-stripe-button").trigger('click');
+                        } else {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'users/save-user',
+                                dataType: 'json',
+                                data: formData,
+                                success: function (data) {
+                                    console.log(data);
+                                    $("#enupalStripe-nursery").val(nid);
+                                    $("#enupalStripe-user").val(data.id);
+                                    $("input[name='stripeElementEmail']").val(email);
+                                    $("form.enupal-stripe-form-elements .enupal-stripe-button").trigger('click');
+                                }
+                            });
+                        }
+                    });
+                    
+                });
+                const myModal = new HystModal({
+                    linkAttributeName: "data-hystmodal",
+                });
+            {% endjs %}
+{% endblock %}

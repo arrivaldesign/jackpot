@@ -1,0 +1,73 @@
+
+<header class="header" id="header">
+    {% set firstSegment = craft.app.request.getSegment(1) %}
+    {% set secondSegment = craft.app.request.getSegment(2) %}
+    {% set serviceCat = craft.entries.section('services').slug(secondSegment).one() %}
+	<div bp="grid vertical-center">
+		<div class="logo"><a href="/"><img src="/images/logo.png" alt="Hinks Insurance" width="273" height="26"></a></div>
+		<div bp="hide show@lg text-center" class="details">
+			<ul>
+				<li><a href="#commercial" class="withmenu">Commercial</a></li>
+				<li><a href="/risk-management"{{ firstSegment == 'risk-management' ? ' class="onstate"' }}>Risk Management</a></li>
+				<li><a href="#personal" class="withmenu">Personal</a></li>
+			</ul>
+		</div>
+		<div bp="text-right" class="burger">
+			<div class="account">
+				<a href="tel:01482 323424"><i class="fas fa-mobile-alt"></i> <span>01482 323424</span></a>
+			</div>
+			<a class="menu-btn" href="#" id="open-menu">
+				<button class="hamburger hamburger--spring" type="button" id="hamburger">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</button>
+			</a>
+		</div>
+	</div>
+</header>
+<nav class="menu" id="overlay">
+	<div class="wrap">
+		<div class="container">
+			<div class="catnav" data-part="1">
+				<ul>
+					<li><a href="/"{{ firstSegment == '' ? ' class="onstate"' }}>Home</a></li>
+					<li><a href="/about"{{ firstSegment == 'about' ? ' class="onstate"' }}>About Us</a></li>
+					<li><a href="/our-history"{{ firstSegment == 'our-history' ? ' class="onstate"' }}>Our History</a></li>
+					<li><a href="/blog"{{ firstSegment == 'blog' ? ' class="onstate"' }}>News &amp; Blog</a></li>
+					<li><a href="/work-for-us"{{ firstSegment == 'work-for-us' ? ' class="onstate"' }}>Work for Us</a></li>
+					<li><a href="/contact"{{ firstSegment == 'contact' ? ' class="onstate"' }}>Contact Us</a></li>
+				</ul>
+			</div>	
+			<div class="catnav" data-part="2">
+				<ul>
+					<li><a href="#commercial"{{ serviceCat.category == 'commercial' ? ' class="onstate"' }}>Commercial</a>
+						<ul class="submenu">
+						{% for commercial in craft.entries.section('services').category('commercial').all() %} 
+							<li><a href="{{ commercial.url }}"{{ secondSegment == commercial.slug ? ' class=onstate data-cat=' ~ serviceCat.category ~ '' }}>{{ commercial.title }}</a></li>
+						{% endfor %}
+						</ul>
+					</li>
+					<li><a href="/services/risk-management"{{ secondSegment == 'risk-management' ? ' class="onstate"' }}>Risk Management</a></li>
+					<li><a href="#personal"{{ serviceCat.category == 'personal' ? ' class="onstate"' }}>Personal</a>
+						<ul class="submenu">
+						{% for personal in craft.entries.section('services').category('personal').all() %} 
+							<li><a href="{{ personal.url }}"{{ secondSegment == personal.slug ? ' class=onstate data-cat=' ~ serviceCat.category ~ '' }}>{{ personal.title }}</a></li>
+						{% endfor %}
+						</ul>
+					</li>
+					<li><a href="/make-a-claim"{{ firstSegment == 'contact' ? ' class="onstate"' }}>Make a Claim</a></li>
+				</ul>
+			</div>
+			<div class="subnav" data-part="3"></div>
+		</div>	
+	</div>
+	<div bp="grid vertical-center" class="banner">
+		<div bp="hide show@lg 12@lg" class="social">
+			<a href="https://www.facebook.com/HinksInsurance/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+			<a href="https://www.linkedin.com/company/hinks-insurance" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+			<a href="https://twitter.com/HinksInsurance" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+		</div>
+	</div>
+</nav>
+<div id="my-menu"></div>

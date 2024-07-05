@@ -1,0 +1,96 @@
+{% extends '_layout' %}
+
+{% requireLogin %}
+
+{% if currentUser == '' %}
+	{% redirect "login" %}
+{% endif %}
+
+{% set pageTitle = 'Sign in'|t('app') %}
+{% set number = '' %}
+
+{% block content %}
+	<section class="feature static">
+		<div class="wrap">
+			<div bp="grid vertical-center">
+				<div bp="12" class="content">
+					<h1>Manage Subscription</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section history">
+		<div class="wrap">
+			<div bp="grid text-center vertical-center">
+			{% set orders = craft.enupalStripe.getAllOrders() %}
+			{% for order in orders %}
+				{% set number = order.number %}
+				{% set order = craft.enupalStripe.getOrderByNumber(number) %}
+				{% set subscription = order.getSubscription() %}
+				{% set paymentForm = order.getPaymentForm() %}
+				{% set extraForm = order.getFormFields() %}
+				{% if currentUser.id == extraForm.user %}
+					{% if subscription.status == 'active' %}
+					<div bp="6@lg" class="box">
+						<div>
+							<h2 class="h5">Your Monthly Subscription</h2>
+							<ul>
+								<li bp="flex space-between">
+									<p><strong>Number of Entries</strong></p>
+									<p>{{ extraForm.entries }}</p>
+								</li>
+								<li bp="flex space-between">
+									<p><strong>Subscription Start Date</strong></p>
+									<p>{{ order.dateOrdered|date('F d, Y') }}</p>
+								</li>
+								<li bp="flex space-between">
+									<p><strong>Monthly Payment</strong></p>
+									<p>{{ order.totalPrice|currency(order.currency) }}</p>
+								</li>
+								<li bp="flex space-between">
+									<p><strong>Next Payment Due</strong></p>
+									<p>{{ subscription.endDate|date('F d, Y') }}</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+					<div bp="6@lg offset-8@lg text-left">
+						<h3 class="pt-0">Cancellation Terms</h3>
+						<p>Blaesus filius duxit: medio cum delectis, castella et munitiones idoneis locis imponens, dux ipse arta et infensa hostibus cuncta fecerat, quia, quoquo inclinarent, pars aliqua militis Romani in ore, in latere et saepe a tergo erat; multique eo modo caesi aut circumventi. tunc tripertitum exercitum pluris in manus dispergit praeponitque centuriones virtutis expertae.</p>
+						<button class="btn brandbgred whitetext stroke decal caps nowidth rounded mt-3" id="submit">Cancel Subscription</button>
+						{% for order in craft.enupalStripe.getSubscriptionsByUser(currentUser.id) %}
+							{% set subscription = order.getSubscription() %}
+							{% set redirectUri = 'shop/come-back-please' %}
+
+							{% if subscription.status == 'active' and not subscription.cancelAtPeriodEnd %}
+								<form method="post">
+									<input type="hidden" name="action" value="enupal-stripe/stripe/cancel-subscription">
+									<input type="hidden" name="subscriptionId" value="{{ order.stripeTransactionId }}">
+									<input type="hidden" name="cancelAtPeriodEnd" value="true">
+									<input type="hidden" name="redirect" value="{{ redirectUri|hash }}">
+									{{ csrfInput() }}
+
+									<ul>
+									<li>{{ 'Order Number:'|t }} {{ order.number }}</li>
+									<li>{{ 'Plan nickname:'|t }}  {{ subscription.planNickName }}</li>
+									<li>{{ 'Status:'|t }}  {{ subscription.status }} </li>
+									<li>{{ 'Interval:'|t }}  {{ subscription.interval }} </li>
+									<li>{{ 'Period Start:'|t }}  {{ subscription.startDate|date }} </li>
+									<li>{{ 'Period end:'|t }}  {{ subscription.endDate|date }} </li>
+									<li>{{ 'Quantity:'|t }}  {{ subscription.quantity }} </li>
+									</ul>
+
+									
+									<button type="submit"class="btn brandbgred whitetext stroke decal caps nowidth rounded mt-3" id="submit"> {{ "Cancel Subscription"|t }}</button>        
+								</form>
+							{% endif %}
+						{% endfor %}
+					</div>
+			</div>
+		</div>
+	</section>
+	{% include "_includes/blog-listing.twig" with { posts: craft.entries().section('blog').limit(1).all() } only %}
+{% endblock %}

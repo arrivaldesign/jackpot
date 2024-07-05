@@ -1,0 +1,73 @@
+{% extends '_layout' %}
+
+{% requireLogin %}
+
+{% if currentUser == '' %}
+	{% redirect "login" %}
+{% endif %}
+
+{% set pageTitle = 'Sign in'|t('app') %}
+
+{% macro monthNameFromNumber(monthNumber) %}
+  {{ date('2024-' ~ monthNumber ~ '-01') | date('F') }}
+{% endmacro %}
+
+{% block content %}
+	<section class="feature static">
+		<div class="wrap">
+			<div bp="grid vertical-center">
+				<div bp="12" class="content">
+					<h1>Purchase History</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section history">
+		<div class="wrap">
+			<div bp="grid vertical-center text-center">
+			{% set orders = craft.enupalStripe.getAllOrders() %}
+			{% for order in orders %}
+				{% set number = order.number %}
+				{% set order = craft.enupalStripe.getOrderByNumber(number) %}
+				{% set subscription = order.getSubscription() %}
+				{% set paymentForm = order.getPaymentForm() %}
+				{% set extraForm = order.getFormFields() %}
+				{% if currentUser.id == extraForm.user %}
+					{% set startDate = order.dateOrdered|date('m') %}
+					{% set endDate = subscription.startDate|date('m') %}
+					{% for month in range(endDate, startDate, 1) %}
+						<div bp="6@lg" class="box">
+							<div>
+								<h2 class="h5">Order Number: {{ order.number }}</h2>
+								<ul>
+									<li bp="flex space-between">
+										<p><strong>Draw Name</strong></p>
+										<p>{{ _self.monthNameFromNumber(month) }} {{ subscription.startDate|date('Y') }}</p>
+									</li>
+									<li bp="flex space-between">
+										<p><strong>Number of Entries</strong></p>
+										<p>{{ extraForm.entries }}</p>
+									</li>
+									<li bp="flex space-between">
+										<p><strong>Date of Entry</strong></p>
+										{% if loop.last %}
+										<p>{{ order.dateOrdered|date('F d, Y') }}</p>
+										{% else %}
+										<p>{{ _self.monthNameFromNumber(month) }} 1, {{ subscription.startDate|date('Y') }}</p>
+										{% endif %}
+									</li>
+									<li bp="flex space-between">
+										<p><strong>Price</strong></p>
+										<p>{{ order.totalPrice|currency(order.currency) }}</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+			</div>
+		</div>
+	</section>
+	{% include "_includes/blog-listing.twig" with { posts: craft.entries().section('blog').limit(1).all() } only %}
+{% endblock %}

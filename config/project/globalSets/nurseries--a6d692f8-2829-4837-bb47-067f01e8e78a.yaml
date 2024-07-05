@@ -1,0 +1,24 @@
+fieldLayouts:
+  e7615277-f503-42fe-baa0-5c574198bed3:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: f2973c46-8e81-458f-ac59-1a537fc7e458 # Nursery Details
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4b989d99-5572-4b2d-b22d-69827ab76ae7
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: f2022ff8-d939-4d0e-8457-4b6cfd66c353
+        userCondition: null
+handle: nurseries
+name: Nurseries
+sortOrder: 1

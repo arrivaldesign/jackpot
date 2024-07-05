@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 9
+template: _singles/account
+uriParts:
+  - account
+uriPattern: account

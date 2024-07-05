@@ -1,0 +1,41 @@
+
+<a id="top"></a>
+<header class="header" id="header">
+    {% set firstSegment = craft.app.request.getSegment(1) %}
+    {% set secondSegment = craft.app.request.getSegment(2) %}
+	<div bp="grid vertical-center">
+		<div class="logo"><a href="/"><img src="/images/logo.png" alt="Nursery Jackpot" width="374" height="212"></a></div>
+        <nav id="nav" bp="hide show@md">
+            <ul>
+                <li><a href="/about"{{ firstSegment == 'about' ? ' class="onstate"' }}>About</a></li>
+                <li><a href="/results"{{ firstSegment == 'results' ? ' class="onstate"' }}>Results</a></li>
+                <li><a href="/winners"{{ firstSegment == 'winners' ? ' class="onstate"' }}>Winners</a></li>
+                <li><a href="/faqs"{{ firstSegment == 'faqs' ? ' class="onstate"' }}>FAQs</a></li>
+                <li><a href="/blog"{{ firstSegment == 'blog' ? ' class="onstate"' }}>Blog</a></li>
+                <li><a href="/contact"{{ firstSegment == 'contact' ? ' class="onstate"' }}>Contact</a></li>
+                {% if (currentUser and currentUser.admin == '') or getCookie('pin') %}
+                    {% if getCookie('pin') %}
+                        <li><a href="/progress"{{ firstSegment == 'progress' ? ' class="onstate"' }}>Account</a></li>
+                        <li><a href="/nursery-logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="/account"{{ firstSegment == 'account' ? ' class="onstate"' }}>Account</a></li>
+                        <li><a href="{{ logoutUrl }}">Logout</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="/login"{{ firstSegment == 'login' or firstSegment == 'progress' ? ' class="onstate"' }}>Login</a></li>
+                {% endif %}
+            </ul>
+         </nav>
+		<div bp="text-right" class="details">
+			<a href="/enter" class="btn brandbg2 whitetext stroke decal nowidth caps rounded">Enter Now</a>
+		</div>
+		<div bp="text-right show hide@md" class="burger">
+            <div class="hamburger-icon" id="icon">
+                <div class="icon-1" id="a"></div>
+                <div class="icon-2" id="b"></div>
+                <div class="icon-3" id="c"></div>
+            </div>
+		</div>
+	</div>
+</header>
+<nav id="mobMenu"></nav>

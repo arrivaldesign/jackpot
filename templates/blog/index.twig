@@ -1,0 +1,62 @@
+{% extends "_layout.twig" %}
+
+{% set posts = craft.entries.section('blog').all() %}
+{% set firstPost = posts[0] %}
+{% set otherPosts = posts|without(firstPost) %}
+
+{% block content %}
+
+		    <section class="feature static">
+    			<div class="wrap">
+    				<div bp="grid vertical-center">
+    					<div bp="12" class="content">
+    						<h1>Our Blog</h1>
+    					</div>
+    				</div>
+    			</div>
+    		</section>
+            <section class="section ltblue">
+                <div class="wrap">
+                    <div bp="grid vertical-center">
+                        <div bp="6@md 5@lg">
+                            <h5 class="pt-0">Latest from the blog</h5>
+                            <h2 class="medium pt-2">{{ firstPost.title }}</h2>
+                            {% for block in firstPost.postContent %}
+                            <p>{{ block.text | excerptify(200) ~ '...' }}</p>
+                            {% endfor %}
+                            <p><a href="{{ firstPost.url }}" class="caplink brand3">Read More</a></p>
+                        </div>
+                        <div bp="6@md offset-7@lg" class="ml-xl-n4">
+                            {% set image = firstPost.featureImage.one() %}
+                            {% if image %}
+                            <figure>
+                                <a href="{{ firstPost.url }}">
+                                    <img src="{{ image.getUrl({ width: 720, height:480}) }}" alt="{{ image.alt }}" width="720" height="480" height="{{ image.getHeight() }}" class="rounded double" />
+                                </a>
+                            </figure>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section ltblue pt-0">
+                <div class="wrap">
+                    <div bp="grid">
+                    {% for post in otherPosts %}
+                        <div bp="6@md 4@lg">
+                            {% set image = post.featureImage.one() %}
+                            {% if image %}
+                            <figure>
+                                <a href="{{ post.url }}">
+                                    <img src="{{ image.getUrl({ width: 720, height:480}) }}" alt="{{ image.alt }}" width="720" height="480" class="rounded double" />
+                                </a>
+                            </figure>
+                            {% endif %}
+                            <h3 class="pt-4 h4">{{ post.title }}</h2>
+                            <p><a href="{{ post.url }}" class="caplink brand3">Read More</a></p>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </section>  
+{% endblock %}

@@ -1,0 +1,14 @@
+<section class="insurers">
+    <div class="wrap swiper-container logo-swiper">
+        <ul class="logos swiper-wrapper" bp="flex">
+        {% for block in insurers.logo %}
+        {# insurers is the name of the global, logo is the name of the matrix #}
+        {% for image in block.logo.all() %}
+            <li class="swiper-slide"><img src="{{ image.getUrl() }}" alt="{{ image.alt }}" width="{{ image.getWidth() }}" height="{{ image.getHeight() }}" /></li>
+        {% endfor %}
+        {% endfor %}
+        </ul>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>

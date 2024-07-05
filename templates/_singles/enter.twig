@@ -1,0 +1,108 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+		    <section class="feature static">
+    			<div class="wrap">
+    				<div bp="grid vertical-center">
+    					<div bp="12" class="content">
+    						<h1>Ways to enter</h1>
+    					</div>
+    				</div>
+    			</div>
+    		</section>
+            <section class="section halfbottom">
+                <div class="wrap">
+                    <div bp="grid vertical-center">
+                        <div bp="8@md offset-3@md text-center" class="mx-md-n5">
+                            <h2 class="pt-0">Everyone can win!</h2>
+                            <h3 class="h4">By playing Nursery Jackpot, you&rsquo;re helping to support charitable causes &ndash; and giving yourself a chance to <span class="brand4">win your child&rsquo;s nursery place FREE for a year!</span></h3>
+                            <p class="pt-3">Choose a monthly subscription plan to suit your budget and enjoy instant entry into every prize draw.</p>
+                            <p>Once subscribed, you&rsquo;ll receive automatic entry into all future draws &ndash; and get notified instantly by email if you win.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section half wrap">
+                <form class="tabset" action="/confirm" id="subscriptions" method="post">
+                    <input type="radio" name="tabset" id="tab1" aria-controls="subscription" checked>
+                    <label for="tab1"><i class="fa-sharp fa-thin fa-stars"></i> Subscriptions</label>
+                    <input type="radio" name="tabset" id="tab2" aria-controls="oneoff">
+                    <label for="tab2"><i class="fa-sharp fa-thin fa-ticket-perforated"></i> One-off Entry</label>
+                    <input type="radio" name="tabset" id="tab3" aria-controls="postal">
+                    <label for="tab3"><i class="fa-sharp fa-thin fa-envelope"></i> Postal Entry</label>
+                    <div class="tab-panels">
+                        <div id="subscription" class="tab-panel wrap">
+                            <h2>Subscribe for best value</h2>
+                            <div bp="grid vertical-center text-left">
+                                <div bp="4@md">
+                                    <div class="entry-box headfont">
+                                        <p><strong>&pound;10</strong>/month</p>
+                                        <p><strong>30 Entries</strong> (3x more entries)</p>
+                                        <p><i class="fa-sharp fa-regular fa-check"></i> Cancel at any time</p>
+                                        <button data-value="enupalStripe-multi-plan-radiobutton-1" class="btn brandbg whitetext stroke decal nowidth caps rounded">Enter Now!</button>
+                                    </div>
+                                </div>
+                                <div bp="4@md">
+                                    <div class="entry-box headfont">
+                                        <p><strong>&pound;20</strong>/month</p>
+                                        <p><strong>80 Entries</strong> (3x more entries)</p>
+                                        <p><i class="fa-sharp fa-regular fa-check"></i> Cancel at any time</p>
+                                        <button data-value="enupalStripe-multi-plan-radiobutton-2" class="btn brandbg5 whitetext stroke decal nowidth caps rounded">Enter Now!</button>
+                                    </div>
+                                </div>
+                                <div bp="4@md">
+                                    <div class="entry-box headfont">
+                                        <p><strong>&pound;30</strong>/month</p>
+                                        <p><strong>150 Entries</strong> (3x more entries)</p>
+                                        <p><i class="fa-sharp fa-regular fa-check"></i> Cancel at any time</p>
+                                        <button data-value="enupalStripe-multi-plan-radiobutton-3" class="btn brandbg3 whitetext stroke decal nowidth caps rounded">Enter Now!</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mx-lg-6">
+                                <p class="mx-lg-4">Please note that Nursery Jackpot is not a charity raffle but a prize draw. Lorem ipsum dolor sit amet consectetur. Purus accumsan massa in quis placerat eget aenean velit. Id nulla ante nam arcu neque diam. Curabitur et volutpat quam libero vitae dui. Convallis massa facilisis facilisis purus bibendum ultricies purus urna vel.</p>
+                            </div>
+                        </div>
+                        <div id="oneoff" class="tab-panel wrap">
+                            <h2>One off entry</h2>
+                        </div>
+                        <div id="postal" class="tab-panel wrap">
+                            <h2>Postal entry</h2>
+                        </div>
+                    </div>
+                    <input type="hidden" name="type" id="type">
+                </form>
+            </section>
+            {% include "_includes/prize-banner.twig" %}
+            <section class="section benefits-icons mt-lg-n5">
+                <div class="wrap">
+                    <div bp="grid text-center">
+                        <div bp="12">
+                            <h2>Benefits of a subscription</h2>
+                        </div>
+                    </div>
+                    <div bp="grid text-center">
+                        <div bp="6@sm 3@lg" class="item">
+                            <i></i>
+                            <h3 class="h4">Don’t forget a draw!</h3>
+                            <p>Enjoy automatic entry into every giveaway.</p>
+                        </div>
+                        <div bp="6@sm 3@lg" class="item">
+                            <i></i>
+                            <h3 class="h4">More Entries</h3>
+                            <p>Benefit from 30 entries every month for just £10.</p>
+                        </div>
+                        <div bp="6@sm 3@lg" class="item">
+                            <i></i>
+                            <h3 class="h4">Give Regularly</h3>
+                            <p>Effortlessly support our charity partners.</p>
+                        </div>
+                        <div bp="6@sm 3@lg" class="item">
+                            <i></i>
+                            <h3 class="h4">Easy To Cancel</h3>
+                            <p>Stop or pause your subscription at any time.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+{% endblock %}

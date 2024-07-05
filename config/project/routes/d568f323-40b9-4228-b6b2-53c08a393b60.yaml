@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 13
+template: _singles/settings
+uriParts:
+  - account/settings
+uriPattern: account/settings

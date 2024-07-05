@@ -1,0 +1,19 @@
+tabs:
+  -
+    elementCondition: null
+    elements:
+      -
+        elementCondition: null
+        fieldUid: 7de772f9-63e9-4d3c-9a4f-c1bd896a6e1b # Nursery ID
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        uid: 7f4f76b9-d024-466a-8f2c-bbab20cebfae
+        userCondition: null
+        warning: null
+        width: 100
+    name: Nursery
+    uid: 36fe6213-3074-4bbf-8af3-c9f86b184c95
+    userCondition: null

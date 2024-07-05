@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 14
+template: _singles/entrants
+uriParts:
+  - entrants
+uriPattern: entrants

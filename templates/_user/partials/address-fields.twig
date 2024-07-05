@@ -1,0 +1,141 @@
+{% import '_user/partials/form-macros' as m %}
+
+{% if address.id %}
+	{{ hiddenInput('addressId', address.id) }}
+{% endif %}	
+
+{% set layoutElements = address.getFieldLayout().getElementsByType('craft\\fieldlayoutelements\\BaseField') %}
+{% for layoutElement in layoutElements %}
+
+	{# custom fields #}
+	{% if className(layoutElement) == 'craft\\fieldlayoutelements\\CustomField' %}
+		
+		{% set field = layoutElement.getField() %}
+		{% include '_user/partials/custom-fields' with {
+			model: address,
+			field: field,
+		} only %}
+		
+	{% else %}
+	{# native fields #}
+		{% switch className(layoutElement) %}
+			
+			{# label #}
+			{% case 'craft\\fieldlayoutelements\\addresses\\LabelField' %}
+				{{m.formFieldInput({
+					id: 'title',
+					type: 'text',
+					name: 'title',
+					value: address.title,
+					required: true,
+				}, 'Label'|t('app'), address.getErrors('title')) }}
+
+			{# country #}
+			{% case 'craft\\fieldlayoutelements\\addresses\\CountryCodeField' %}
+				{% set countries = craft.app.getAddresses().getCountryRepository().getAll(currentSite.language)|map((value, key) => {
+					value: value.countryCode,
+					label: value.name,
+				}) %}			
+				{{m.formFieldSelect({
+					id: 'countryCode',
+					name: 'countryCode',			
+					value: address.countryCode,
+				}, 'Country'|t('app'), countries, address.getErrors('countryCode')) }}
+
+			{# tax id #}
+			{% case 'craft\\fieldlayoutelements\\addresses\\OrganizationTaxIdField' %}
+				{{m.formFieldInput({
+					id: 'organizationTaxId',
+					type: 'text',
+					name: 'organizationTaxId',
+					value: address.organizationTaxId,
+				}, 'Organization Tax ID'|t('app'), address.getErrors('organizationTaxId')) }}
+
+			{# address #}
+			{% case 'craft\\fieldlayoutelements\\addresses\\AddressField' %}
+				{# address line 1 #}
+				{{m.formFieldInput({
+					id: 'addressLine1',
+					type: 'text',
+					name: 'addressLine1',
+					value: address.addressLine1,
+					required: true,
+				}, 'Address Line 1'|t('app'), address.getErrors('addressLine1')) }}
+
+				{# address line 2 #}
+				{{m.formFieldInput({
+					id: 'addressLine2',
+					type: 'text',
+					name: 'addressLine2',
+					value: address.addressLine2,
+				}, 'Address Line 2'|t('app'), address.getErrors('addressLine2')) }}
+
+				{# state #}
+				{{m.formFieldInput({
+					id: 'administrativeArea',
+					type: 'text',
+					name: 'administrativeArea',
+					value: address.administrativeArea,
+					required: true,
+				}, 'State'|t('app'), address.getErrors('administrativeArea')) }}
+
+				{# city #}
+				{{m.formFieldInput({
+					id: 'locality',
+					type: 'text',
+					name: 'locality',
+					value: address.locality,
+					required: true,
+				}, 'City'|t('app'), address.getErrors('locality')) }}
+
+				{# postal code #}
+				{{m.formFieldInput({
+					id: 'postalCode',
+					type: 'text',
+					name: 'postalCode',
+					value: address.postalCode,
+					required: true,
+				}, 'Zip Code'|t('app'), address.getErrors('postalCode')) }}
+
+			{# latitude longitude #}
+			{% case 'craft\\fieldlayoutelements\\addresses\\LatLongField' %}
+				{# latitude #}
+				{{m.formFieldInput({
+					id: 'latitude',
+					type: 'text',
+					name: 'latitude',
+					value: address.latitude,
+				}, 'Latitude'|t('app'), address.getErrors('latitude')) }}
+
+				{# longitude #}
+				{{m.formFieldInput({
+					id: 'longitude',
+					type: 'text',
+					name: 'longitude',
+					value: address.longitude,
+				}, 'Longitude'|t('app'), address.getErrors('longitude')) }}	
+
+			{# organisation #}
+			{% case 'craft\\fieldlayoutelements\\addresses\\OrganizationField' %}
+				{{m.formFieldInput({
+					id: 'organization',
+					type: 'text',
+					name: 'organization',
+					value: address.organization,
+				}, 'Organization'|t('app'), address.getErrors('organization')) }}	
+
+			{# full name #}
+			{% case 'craft\\fieldlayoutelements\\FullNameField' %}
+				{{m.formFieldInput({
+					id: 'fullName',
+					type: 'text',
+					name: 'fullName',
+					value: address.fullName,
+				}, 'Full Name'|t('app'), address.getErrors('fullName')) }}	
+
+
+		{% endswitch %}
+
+	{% endif %}
+
+{% endfor %}

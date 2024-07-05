@@ -1,0 +1,92 @@
+{% extends '_layout' %}
+
+{% requireLogin %}
+
+{% if currentUser == '' %}
+	{% redirect "login" %}
+{% endif %}
+
+{% set pageTitle = 'Sign in'|t('app') %}
+{% set number = '' %}
+{% set startDate = '' %}
+{% set endDate = '' %}
+
+{% block content %}
+	<section class="feature static">
+		<div class="wrap">
+			<div bp="grid vertical-center">
+				<div bp="12" class="content">
+					<h1>My Entries</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section entries">
+		<div class="wrap">
+		{% set orders = craft.enupalStripe.getAllOrders() %}
+		{% for order in orders %}
+			{% set number = order.number %}
+			{% set order = craft.enupalStripe.getOrderByNumber(number) %}
+			{% set subscription = order.getSubscription() %}
+			{% set paymentForm = order.getPaymentForm() %}
+			{% set extraForm = order.getFormFields() %}
+			{% set endDate = subscription.endDate %}
+			{% set startDate = subscription.startDate %}
+			{% set stripeForm = craft.enupalstripe.paymentForms({'handle' : 'nurseryDraw'}).one() %}
+			{% if currentUser.id == extraForm.user %}
+				{% if subscription.status == 'active' %}
+			<div bp="grid gap-none vertical-center">
+				<div bp="10@lg offset-2@lg">
+					<h2 class="pb-5">{{ subscription.startDate|date('F') }} Draw</h2>
+				</div>
+				<div bp="5@md 4@lg offset-2@lg" class="image">
+					<div>
+						<img src="/images/entry-image.webp" alt="" width="765" height="1085">
+					</div>
+				</div>
+				<div bp="7@md 6@lg" class="content">
+					<div>
+						<h3 class="p-0">{{ extraForm.entries }}</h3>
+						<h5 class="p-0 mt-n2"><strong>Monthly Entries</strong></h5>
+					</div>
+					<div>
+						<h4 class="pt-0">Draw Ends In:</h4>
+						<div id="timer"></div>
+						<div class="sponsor">
+							<span>
+							{% set logo = stripeForm.getLogoAsset() %}
+							{% if logo %}
+								<img height="{{logo.getHeight()}}" width="{{logo.getHeight()}}" src="{{ logo.getUrl() }}" alt=""">
+							{% endif %}
+							</span>
+							Our Current Sponsor
+						</div>
+					</div>
+				</div>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+			</div>
+		</div>
+	</section>
+	{% include "_includes/blog-listing.twig" with { posts: craft.entries().section('blog').limit(1).all() } only %}
+	{% js %}
+		var countDownDate = new Date("{{ endDate|date('M 1, Y') }} 00:00:00").getTime();
+		var x = setInterval(function() {
+			var now = new Date().getTime();
+			var distance = countDownDate - now;
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			document.getElementById("timer").innerHTML = "<figure><span>" + days + "</span><span>Days</span></figure><figure><span>" + hours + "</span><span>Hours</span></figure><figure><span>"
+			+ minutes + "</span><span>Mins</span></figure><figure><span>" +  seconds + "</span><span>Secs</span></figure>";
+
+			if (distance < 0) {
+				clearInterval(x);
+				document.getElementById("timer").innerHTML = "EXPIRED";
+			}
+		}, 1000);
+	{% endjs %}
+{% endblock %}

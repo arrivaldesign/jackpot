@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 12
+template: _singles/manage-subscription
+uriParts:
+  - account/manage-subscription
+uriPattern: account/manage-subscription

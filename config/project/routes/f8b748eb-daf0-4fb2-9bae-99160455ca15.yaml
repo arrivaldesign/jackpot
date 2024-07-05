@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 7
+template: _singles/nursery-page
+uriParts:
+  - progress
+uriPattern: progress

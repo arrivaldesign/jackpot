@@ -1,0 +1,12 @@
+defaultPlacement: end
+enableVersioning: true
+handle: faqs
+name: FAQs
+propagationMethod: all
+siteSettings:
+  9c0b7811-27f0-4641-a2df-f3b3fd99623e: # Nursery Jackpot
+    enabledByDefault: true
+    hasUrls: true
+    template: _singles/faqs
+    uriFormat: faqs
+type: single

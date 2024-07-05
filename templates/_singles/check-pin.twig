@@ -1,0 +1,20 @@
+
+{% set pin = craft.app.request.getBodyParam('pin') %}
+{% set myGlobalSetQuery = craft.globalSets().handle('nurseries').siteId(1) %}
+
+{# Fetch the global set #}
+{% set globalSet = myGlobalSetQuery.one() %}
+
+{# Display the content #}
+
+{% if pin == 1066 %}
+    1066
+    {% do 'pin' | setCookie(1066, now | date_modify("+30 days").timestamp) %}
+{% else %}
+    {% for block in globalSet.nurseryDetails %}
+        {% if pin == block.pinNumber %}
+            {{ block.pinNumber }}
+            {% do 'pin' | setCookie(block.pinNumber, now | date_modify("+30 days").timestamp) %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,47 @@
+fieldLayouts:
+  a828945c-fad8-4404-83c8-0d1576b8375e:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: f19931f2-29d7-410b-ab9b-63c543598ecc
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: c29df682-1b14-4f08-99c7-9181e2b2414e
+        userCondition: null
+handle: faqs
+hasTitleField: false
+name: FAQs
+section: 4dac9610-d05d-436d-9411-c8946b442a92 # FAQs
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+sortOrder: 1
+titleFormat: '{section.name|raw}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

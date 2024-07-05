@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 11
+template: _singles/purchase-history
+uriParts:
+  - account/purchase-history
+uriPattern: account/purchase-history

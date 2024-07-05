@@ -1,0 +1,111 @@
+// out: false
+
+@base-font: 16;
+
+.fontclamp(@font-size1; @vw; @font-size2;) {
+  @min: (@font-size1 / @base-font);
+  @max: (@font-size2 / @base-font); 
+  font-size:~"clamp(@{min}rem, @{vw}vw, @{max}rem)";
+}
+
+.font(@font-size) {
+  @min: (@font-size / @base-font);
+  font-size:~"@{min}rem";
+}
+
+.slides(@n) when (@n > 0) {
+  .slides((@n - 1));
+  .swiper-slide:nth-child(@{n}) {
+    .bg-img("mobile/slider-image@{n}.jpg");
+    //&::after { .overlaybg(1,black,40%); @media @sm { display:none; } }
+    @media @sm { background-position: top center; .bg-img("slider-image@{n}.jpg"); }
+    @media @lg { background-position: center; }
+  }
+}
+
+.spaced-nav() {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bodyFont() {
+  font-family: var(--primary-font);
+}
+
+.ls(@value) {
+  letter-spacing: @value;
+}
+
+.radius(@value){
+  border-radius: @value;
+}
+
+.weight(@value){
+  font-weight: @value;
+}
+
+.white(){
+  color: #ffffff;
+}
+
+.vertical-align(@position: relative) {
+  position: @position;
+  top: 50%;
+  .effect(transform, translateY(-50%));
+}
+
+.total-align(@position: relative) {
+  position: @position;
+  top: 50%;
+  left: 50%;
+  .effect(transform, translateY(-50%) translateX(-50%));
+}
+
+.bg-img(@img-name){
+    @base-path:~"/images/";
+    background-image: url("@{base-path}@{img-name}");
+}
+
+.placeholder(@color: #ffffff) {
+    ::placeholder {color: @color; opacity: 1;}
+    ::-webkit-input-placeholder {color: @color; opacity: 1;}
+    ::-moz-placeholder {color: @color; opacity: 1;}
+    :-moz-placeholder {color: @color; opacity: 1;}
+    :-ms-input-placeholder {color: @color; opacity: 1;}
+}
+
+.effect(@property; @value){
+    -webkit-@{property}: @value;
+       -moz-@{property}: @value;
+        -ms-@{property}: @value;
+         -o-@{property}: @value;
+            @{property}: @value;
+}
+
+.soc-icon(@value; @bg; @width: 30px; @height: 30px){
+    border-radius: 50%;
+    text-align: center;
+    width: @width;
+    height: @height;
+    display: inline-grid;
+    align-content: center;
+    color: @value;
+    border:1px solid @value;
+    background-color: @bg;
+    font-size: 90%;
+    &:hover {
+      color:@bg;
+      background-color: @value;
+    }
+}
+
+.overlaybg(@zindex; @value; @opacity) {
+    background: fade(@value, @opacity);
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: @zindex;
+}

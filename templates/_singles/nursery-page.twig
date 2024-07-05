@@ -1,0 +1,102 @@
+{% extends "_layout.twig" %}
+{% block content %}
+    {% if getCookie('pin') %}
+    {{getCookie('pin')}}
+        {% if getCookie('pin') == 1066 %}
+            {% redirect "entrants" %}
+        {% endif %}
+
+        {% set myGlobalSetQuery = craft.globalSets().handle('nurseries').siteId(1) %}
+        {% set globalSet = myGlobalSetQuery.one() %}
+        {% set pin = getCookie('pin') %} 
+        {% set sold = 0 %}
+
+        {% for block in globalSet.nurseryDetails %}
+            {% if pin == block.pinNumber %}
+
+                {% set capacity = block.capacity %}
+                {% set orders = craft.enupalStripe.getAllOrders() %}
+                {% for order in orders %}
+				    {% set extraForm = order.getFormFields() %}
+					{% set subscription = order.getSubscription() %}
+                    {% if block.id == extraForm.nursery and subscription.status == 'active' %}
+                        {% set sold = sold + extraForm.entries %}
+                    {% endif %}
+                {% endfor %}
+
+                {% set percentage = (capacity - (capacity - sold)) / capacity * 100 %}
+                {% if percentage >= 95 %}
+                    {% set milk = 31 %}
+                {% else %}
+                    {% set milk = 100 - (0.71 * percentage) %}
+                {% endif %}
+                <section class="feature static">
+                    <div class="wrap">
+                        <div bp="grid vertical-center">
+                            <div bp="12" class="content">
+                                <h1>{{ block.nurseryName }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="progress">
+                    <div class="wrap">
+                        <div bp="grid vertical-center">
+                            <div bp="4@md" class="bottle">
+                                <figure style="--percentage:'{{ percentage|round(0, 'floor') }}%'">
+                                    <div></div>
+                                    <div style="--percentage:{{ milk|round(0, 'floor') }}%"></div>
+                                </figure>
+                                <div>
+                                    <div class="twinkle"></div>
+                                    <div class="twinkle"></div>
+                                    <div class="twinkle"></div>
+                                    <div class="twinkle"></div>
+                                    <div class="twinkle"></div>
+                                    <div class="twinkle"></div>
+                                    <div class="twinkle"></div>
+                                </div>
+                            </div>
+                            <div bp="4@md" class="py-lg-6 ml-xl-4">
+                                <h3>How it&rsquo;s going</h3>
+                                <h2 class="pt-1">Current level: <span class="brand4">{{ percentage|round(0, 'floor') }}%</span><br />
+                                Tickets sold: <span class="brand4">{{ sold|round }}</span></h2>
+                                <p class="mr-lg-6 pr-lg-4">Keep going ipsum dolor sit amet consectetur. Adipiscing volutpat congue um at in netus suspe aliquet a.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section ltblue relative">
+                    <div class="wrap">
+                        <div bp="grid">
+                            <div bp="6@md">
+                                <h2 class="pt-0">Promotional pack</h2>
+                                
+                            </div>
+                            <div bp="5@md offset-8@md">
+                                <h2 class="pt-0">Tips for ticket promotion</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur. Adipiscing volutpat congue um at in netus suspe aliquet a amet rhoncus ultrices suspendi. Lorem</p>
+                                <p>Lorem ipsum dolor sit amet consectetur. Adipiscing volutpat congue um at in netus suspe aliquet a amet rhoncus ultrices suspendi. Lorem&nbsp;</p>
+                                <h3 class="h5 brand4">You could try:</h3>
+                                <ul class="fancy fancy2 brand4 mt-2" bp="grid">
+                                    <div bp="6@md">
+                                        <li>Social media posts</li>
+                                        <li>Awareness days</li>
+                                        <li>Emarketing</li>
+                                    </div>
+                                    <div bp="6@md">
+                                        <li>Local newspapers</li>
+                                        <li>Raffles</li>
+                                        <li>Letter drops</li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% redirect "login" %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+columnSuffix: pbkenkvl
+contentColumnType: integer(10)
+fieldGroup: b92bd8cf-5142-4835-8fb2-7ba810219633 # Nursery Details
+handle: nurseryID
+instructions: null
+name: 'Nursery ID'
+searchable: false
+settings:
+  decimals: 0
+  defaultValue: null
+  max: null
+  min: 0
+  prefix: null
+  previewCurrency: null
+  previewFormat: none
+  size: null
+  suffix: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Number

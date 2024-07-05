@@ -1,0 +1,47 @@
+fieldLayouts:
+  7ee28c94-dfde-4f0d-9932-f50485ae3f60:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 49cf49d9-783c-4d2b-9223-3bcf2ea4754e
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: a9d131ff-03b7-452c-8c1c-74546e20d1ac
+        userCondition: null
+handle: register
+hasTitleField: false
+name: Register
+section: 44ebbcb7-5c43-4666-9b22-ec4bc30a64bc # Register
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+sortOrder: 1
+titleFormat: '{section.name|raw}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

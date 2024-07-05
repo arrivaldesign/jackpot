@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ craft.app.language }}">
+    <head>
+        {% set firstSegment = craft.app.request.getSegment(1) %}
+        <meta charset="utf-8"/>
+        {% hook "seo" %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        {% include "_includes/header_assets.twig" %}
+    </head>
+    <body id="{{ firstSegment == '' ? 'home' : firstSegment }}">
+        <div class="page">
+            {% if firstSegment != "holding" %}
+                {% include "_includes/header.twig" %}
+            {% endif %}
+            {% block content %}{% endblock %}
+            {% if firstSegment != "holding" %}
+                {% include "_includes/footer.twig" %}
+            {% endif %}
+        </div>
+        {% include "_includes/footer_assets.twig" %}
+    </body>
+</html>

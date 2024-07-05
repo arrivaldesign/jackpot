@@ -1,0 +1,141 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+
+		<div id="holding">
+            <header class="top-strip">
+    			<div class="wrap">
+    				<div bp="grid vertical-center text-center">
+		                <div class="logo"><a href="/"><img src="/images/logo.png" alt="Nursery Jackpot" width="390" height="118"></a></div>
+    					<h2 class="white">New website coming soon</h2>
+                        <div bp="text-right" class="register">
+                            <a href="#register" class="btn brandbg whitetext stroke decal nowidth caps rounded">Register Interest</a>
+                        </div>
+    				</div>
+    			</div>
+            </header>
+		    <section class="feature">
+    			<div class="wrap">
+    				<div bp="grid vertical-center text-center">
+    					<div bp="8@lg offset-3@lg">
+    						{{ entry.wysiwyg }}
+    					</div>
+    				</div>
+    			</div>
+                <a href="#register" class="register">Register below <i class="fas fa-chevron-down"></i></a>
+    		</section>
+		    <section class="section forms" id="register">
+    			<div class="wrap">
+    				<div bp="grid">
+    					<div bp="5@lg">
+                            <h2>Register your nursery</h2>
+                            <h3>Don’t delay, sign up today!</h3>
+                            {% set form = craft.expressforms.form("registerYourNursery") %}
+                            {{ form.openTag({ return: 'contact/thanks' }) }}
+                                {# Start field render automation #}
+                                {% for field in form.fields %}
+                                    {% if field.type == "hidden" %}
+                                        {# Hidden field formatting contents #}
+                                    {% elseif field.type == "textarea" %}
+                                        {# Textarea field formatting contents #}
+                                    {% elseif field.type == "file" %}
+                                        {# File field formatting contents #}
+                                    {% else %}
+                                        {# Check on a Field Handle for Exception to formatting #}
+                                        {% if field.handle == "myFieldHandle" %}
+                                            {# Specific field formatting overrides #}
+                                        {% else %}
+                                            {# All other fields formatting - EXAMPLE #}
+                                            <div>
+                                                <label for="{{ field.handle }}"{{ field.isRequired ? ' class="required"' }}>{{ field.label }}</label>
+                                                <input id="{{ field.handle }}" type="{{ field.type }}" name="{{ field.handle }}" value="{{ field.value }}" class="input">
+                                                {% if field.errors %}
+                                                    <ul class="errors">
+                                                        {% for error in field.errors %}
+                                                            <li>{{ error|t }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                {# End field render automation #}
+                                <button type="submit" class="btn brandbg whitetext stroke decal caps rounded">Submit</button>
+                            {{ form.closeTag }}
+    					</div>
+    					<div bp="5@lg offset-8@lg">
+                            <h2>Win your child’s place</h2>
+                            <h3>Register your interest now!</h3>
+                            {% set form = craft.expressforms.form("winYourChildSPlace") %}
+                            {{ form.openTag({ return: 'contact/thanks' }) }}
+                                {# Start field render automation #}
+                                {% for field in form.fields %}
+                                    {% if field.type == "hidden" %}
+                                        {# Hidden field formatting contents #}
+                                    {% elseif field.type == "textarea" %}
+                                        {# Textarea field formatting contents #}
+                                    {% elseif field.type == "file" %}
+                                        {# File field formatting contents #}
+                                    {% else %}
+                                        {# Check on a Field Handle for Exception to formatting #}
+                                        {% if field.handle == "yourChildSNursery111111" %}
+                                            {# Specific field formatting overrides #}
+                                            <div>
+                                                <label for="{{ field.handle }}"{{ field.isRequired ? ' class="required"' }}>{{ field.label }}</label>
+                                               <div class="styled-select">
+                                                   <select id="{{ field.handle }}" name="{{ field.handle }}">
+                                                   <option value="">Choose a Nursery</option>
+                                                        {% for block in nurseries.nurseryDetails %}
+                                                        {# nurseries is the name of the global, nurseryDetails is the name of the matrix #}
+                                                            <option value="{{ block.nurseryName }}">{{ block.nurseryName }}</option>
+                                                        {% endfor %}
+                                                   </select>
+                                               </div>
+                                                {% if field.errors %}
+                                                    <ul class="errors">
+                                                        {% for error in field.errors %}
+                                                            <li>{{ error|t }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </div>
+                                        {% else %}
+                                            {# All other fields formatting - EXAMPLE #}
+                                            <div>
+                                                <label for="{{ field.handle }}"{{ field.isRequired ? ' class="required"' }}>{{ field.label }}</label>
+                                                <input id="{{ field.handle }}" type="{{ field.type }}" name="{{ field.handle }}" value="{{ field.value }}" class="input">
+                                                {% if field.errors %}
+                                                    <ul class="errors">
+                                                        {% for error in field.errors %}
+                                                            <li>{{ error|t }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                {# End field render automation #}
+                                <button type="submit" class="btn brandbg whitetext stroke decal caps rounded">Submit</button>
+                            {{ form.closeTag }}
+    					</div>
+    				</div>
+    			</div>
+    		</section>
+            {#  
+            <footer class="follow py-4">
+    			<div class="wrap">
+    				<div bp="grid vertical-center">
+    					<h2 class="medium">Follow us on social for more information - more will be revealed!</h2>
+                        <div bp="text-right">
+                            <a href="#" class="btn brandbg3 whitetext circle"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="btn brandbg3 whitetext circle ml-2"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+    				</div>
+    			</div>
+            </footer>
+            #}
+		</div>
+
+{% endblock %}

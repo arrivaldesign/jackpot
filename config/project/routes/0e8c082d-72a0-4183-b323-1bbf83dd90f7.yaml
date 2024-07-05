@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 5
+template: _includes/load-stripe
+uriParts:
+  - load-stripe
+uriPattern: load-stripe

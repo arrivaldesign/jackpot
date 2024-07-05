@@ -1,0 +1,23 @@
+
+{% set email = craft.app.request.getBodyParam('email') %}
+{% set nursery = craft.app.request.getBodyParam('nursery') %}
+{% set user = craft.app.request.getBodyParam('user') %}
+{% set entries = craft.app.request.getBodyParam('entries') %}
+{% set type = craft.app.request.getBodyParam('type') %}
+
+{% block content %}
+    {% set options = { email: email } %}
+    {% do craft.enupalStripe.addVariables({ nursery: nursery, entries: entries, user: user }) %}
+    {{ craft.enupalStripe.paymentForm('nurseryDraw', options) }}
+    <script>
+        $(document).ready(function(){
+            var val = '{{ type }}';
+            if (val) {
+                $("#" + val).prop("checked", true);
+            } else {
+                $("#enupalStripe-multi-plan-radiobutton-1").prop("checked", true);
+            }
+            //$("form.enupal-stripe-form .enupal-stripe-button").trigger('click');
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "_layout.twig" %}
+
+{# create settings for image transform #}
+{% set featureImage = {
+    mode: 'crop',
+    width: 910,
+    height: 600,
+    quality: 90
+} %}
+
+{% block content %}
+
+<section class="section blog-article ltblue">
+    <div class="wrap">
+        <div bp="grid">
+            <div bp="8@lg">
+                <p><a href="/blog" class="brand3 bold headfont"><i class="fas fa-chevron-left"></i> Return to blogs</a></p>
+                <figure>
+                    {% if entry.featureImage | length %}
+                        {% for image in entry.featureImage.all() %}
+                            <img src="{{ image.getUrl(featureImage) }}" alt="{{ image.title }}" width="910" height="600" />
+                        {% endfor %}
+                    {% endif %}
+                </figure>
+                <h1 class="h2">{{ entry.title }}</h1>
+                {% include "_includes/post-blocks.twig" with { blocks: entry.postContent.all() } only %}
+            </div>
+            <div bp="3@lg offset-10@lg" class="blog-list">
+                <div bp="grid">
+                    {% set posts = craft.entries().section('blog').id('not ' ~ entry.id).limit(4).all() %}
+                    {% for post in posts %}
+					<div bp="6@sm 12@lg">
+                        {% set image = post.featureImage.one() %}
+                        <a href="{{ post.url }}">
+                            <img src="{{ image.getUrl({ width: 330, height: 220}) }}"
+                            alt="{{ image.title }}" width="{{ image.getWidth() }}" height="{{ image.getHeight() }}"
+                            />
+                        </a>
+                        <h4 class="h5"><a href="{{ post.url }}" class="text">{{ post.title }}</a></h4>
+                        <p><a href="{{ post.url }}" class="caplink brand3">Read More</a></p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include "_includes/cta.twig" %}
+{% endblock %}

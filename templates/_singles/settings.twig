@@ -1,0 +1,162 @@
+{% extends '_layout' %}
+
+{% if currentUser == '' %}
+	{% redirect "login" %}
+{% endif %}
+
+{% requireLogin %}
+
+{% macro errorList(errors) %}
+  {% if errors %}
+    {{ ul(errors, {class: 'errors'}) }}
+  {% endif %}
+{% endmacro %}
+{% set message = craft.app.request.getQueryParam('success') %}
+{% set user = user ?? currentUser %}
+{% set pageTitle = 'Sign in'|t('app') %}
+{% set orders = craft.enupalStripe.getAllOrders() %}
+{% set currSubscription = '' %}
+{% set currEntries = '' %}
+{% set currOrderID = '' %}
+{% set planStatus = '' %}
+{% set planEnd = '' %}
+{% set userID = '' %}
+{% for order in orders %}
+	
+	{% set extraFields = order.getFormFields() %}
+	{% set subsForm = order.getSubscription() %}
+
+	{% for handle, value in extraFields %}
+		{% if handle == 'user' %}
+			{% set userID = value %}
+		{% endif %}
+	{% endfor %}
+
+	{% if currentUser.id == userID %}
+		{% if subsForm.status == 'active' %}
+			{% set currSubscription = order.totalPrice|currency(order.currency, stripZeros=true) %}
+			{% set currEntries = extraFields.entries %}
+			{% set currOrderID = order.id %}
+			{% set planStatus = subsForm.status %}
+			{% set planEnd = subsForm.endDate|date %}
+		{% endif %}
+	{% endif %}
+	
+{% endfor %}
+{% block content %}
+{{currentUser.email}}
+	<section class="feature static">
+		<div class="wrap">
+			<div bp="grid vertical-center">
+				<div bp="12" class="content">
+					<h1>Account Settings</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section register">
+		<div class="wrap">
+			<div bp="grid vertical-center text-center" class="mx-lg-n5 account">
+				{% if craft.app.session.getFlash('notice') == 'User saved.'|t %}
+				<div bp="10@lg offset-2@lg" class="success">
+					<h4 class="p-0">You have successfully updated your account!</h4>
+				</div>
+				{% endif %}
+				<div bp="5@md 4@lg offset-2@lg" class="box">
+					<div>
+						<h2 class="pt-0">Current<br>Subscription</h2> 
+						<div class="entry-box headfont">
+							{% if planStatus == 'active' %}
+							<p><strong>{{ currSubscription }}</strong>/month</p>
+							<p><strong>{{ currEntries }} Entries</strong> (3x more entries)</p>
+							<p>Your Subscription Expires: <strong>{{ planEnd }}</strong></p>
+							<p><a href="/account/settings">Cancel Your Subscription</a></p>
+							{% else %}
+							No current active subscription - <a href="/enter">enter here</a>.
+							{% endif %}
+						</div>
+					</div>
+				</div>
+                <div bp="7@md 6@lg" class="box settings">
+					<div class="form-fields">
+						<h2 class="pt-0 pb-4 mt-n3">Edit your details</h2>
+						{% if user.hasErrors() %}
+							<p>Unable to save your profile.</p>
+						{% endif %}
+						<form method="post" accept-charset="UTF-8" id="editForm">
+							{{ csrfInput() }}
+							{{ actionInput('users/save-user') }}
+							{{ hiddenInput('userId', user.id) }}
+
+							<div>
+								{{ input('text', 'fullName', user.fullName, {
+									id: 'fullName',
+									placeholder: 'Full Name',
+									class: user.hasErrors('fullName') ? 'error input required' : 'input required',
+									autocomplete: 'fullName',
+								}) }}
+								<label for="fullName">Full Name</label>
+								{{ _self.errorList(user.getErrors('fullName')) }}
+							</div>
+
+							<div>
+								{{ input('email', 'email', user.email, {
+									id: 'email',
+									placeholder: 'Email Address',
+									class: user.hasErrors('email') ? 'error input required' : 'input required',
+									autocomplete: 'email',
+								}) }}
+								<label for="email">Email Address</label>
+								{{ _self.errorList(user.getErrors('email')) }}
+							</div>
+
+							<div>
+								<div class="styled-select mb-3">
+									<select id="nurseryID" name="fields[nurseryID]" class="required">
+										<option value="">Your child's nursery</option>
+										{% set myGlobalSetQuery = craft.globalSets().handle('nurseries').siteId(1) %}
+										{% set globalSet = myGlobalSetQuery.one() %}
+										{% for block in globalSet.nurseryDetails %}
+											{% if block.pinNumber %}
+												{% set onstate = block.id == user.nurseryID ? 'selected' : '' %}
+												<option value="{{ block.id }}" {{ onstate }}>{{ block.nurseryName }}</option>
+											{% endif %}
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+
+							<div>
+								{{ input('password', 'newPassword', null, {
+									id: 'new-password',
+									placeholder: 'New Password',
+									class: user.hasErrors('newPassword') ? 'error input' : 'input',
+									autocomplete: 'new-password',
+								}) }}
+								<label for="new-password">New Password</label>
+								<span toggle="#new-password" class="fa-sharp fa-solid fa-eye toggle-password2"></span>
+								{{ _self.errorList(user.getErrors('newPassword')) }}
+								<p class="small mt-n2">Enter new password only if you want to change it, leave blank otherwise</p>
+							</div>
+
+							<div>
+								{{ input('password', 'password', null, {
+									id: 'current-password',
+									placeholder: 'Current Password',
+									class: user.hasErrors('currentPassword') ? 'error input required' : 'input required',
+									autocomplete: 'current-password',
+								}) }}
+								<label for="current-password">Current Password</label>
+								<span toggle="#current-password" class="fa-sharp fa-solid fa-eye toggle-password"></span>
+								{{ _self.errorList(user.getErrors('currentPassword')) }}
+								<p class="small mt-n2">Verify your current password to update your details</p>
+							</div>
+							<button class="btn brandbg whitetext stroke decal caps rounded mt-4" id="submit">Save Changes</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% include "_includes/blog-listing.twig" with { posts: craft.entries().section('blog').limit(1).all() } only %}
+{% endblock %}

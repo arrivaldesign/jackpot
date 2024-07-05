@@ -1,0 +1,59 @@
+fieldLayouts:
+  b308172c-bb2d-46ea-9d8a-bf7594d8166e:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 861cef41-7f7b-428b-bb50-aadf30b22878
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 66cde90c-8d0e-4567-81e5-a52ba4dd229d # Wysiwyg
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 41e74b90-c449-4f6b-b61c-6b989697e020
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 24589087-809f-4c1e-ad44-03ee6dfe6cea
+        userCondition: null
+handle: holdingPage
+hasTitleField: true
+name: 'Holding Page'
+section: 254e9adc-0c7e-457a-8c94-f5101278b074 # Holding Page
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+sortOrder: 1
+titleFormat: '{section.name|raw}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

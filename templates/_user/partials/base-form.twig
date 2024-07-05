@@ -1,0 +1,24 @@
+{% set defaultFormAttributes = {
+	method: 'post',
+	'accept-charset': 'UTF-8',
+	enctype: 'multipart/form-data',
+} %}
+{% set defaultFormAttributes = defaultFormAttributes|merge(formAttributes ?? {}) %}
+
+{# errors #}
+{# {% if user ?? address ?? null %}
+{% include '_user/partials/model-errors' with {
+	model: user ?? address,
+} only %}
+{% endif %} #}
+
+<form {{attr(defaultFormAttributes)}}>
+
+{# hidden fields #}
+{% if craft.app.config.general.enableCsrfProtection == true %}
+	{{ csrfInput() }}
+{% endif %}
+
+{% block formContent %}{% endblock %}
+
+</form>
