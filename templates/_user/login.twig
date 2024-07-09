@@ -17,19 +17,19 @@
 		</section>
 		<section class="section halfbottom register login">
 			<div class="wrap">
-				<div bp="grid vertical-center text-center" class="mx-lg-n5 account">
+				<div bp="grid vertical-center text-center" class="mx-xl-n5 account">
 					{% if craft.app.session.getFlash('notice') == 'Password reset email sent.'|t %}
-					<div bp="10@lg offset-2@lg text-center" class="success">
+					<div bp="10@xl offset-2@xl text-center" class="success">
 						<h4 class="p-0">Your request has been received, please check your email for further instructions.</h4>
 					</div>
 					{% endif %}
-					<div bp="5@md offset-2@md" class="box">
+					<div bp="6@md 5@xl offset-2@xl" class="box">
 						<form action="" name="frmlogin" id="frmlogin" method="post">		
 							<label for="pincode">Nursery Login:</label>
 							<input type="text" id="pincode" name="pincode">	
 						</form>
 					</div>
-					<div bp="5@md" class="box">
+					<div bp="6@md 5@xl" class="box mt-4 mt-md-0">
 						<h2 class="pt-0">Parent Login</h2>
 						<div class="form-fields">
                         	<div class="message"></div>
@@ -61,7 +61,7 @@
 									<div bp="5@lg text-left">
 										<button class="btn brandbg4 whitetext stroke decal caps rounded" id="submit2">Login</button>
 									</div>
-									<div bp="7@lg text-right">
+									<div bp="7@lg text-left text-right@lg">
 										<a href="#" data-hystmodal="#modal" class="forgot white">Forgotten your password?</a>
 									</div>
 								</div>

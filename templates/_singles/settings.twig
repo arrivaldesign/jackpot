@@ -44,7 +44,6 @@
 	
 {% endfor %}
 {% block content %}
-{{currentUser.email}}
 	<section class="feature static">
 		<div class="wrap">
 			<div bp="grid vertical-center">
@@ -56,13 +55,13 @@
 	</section>
 	<section class="section register">
 		<div class="wrap">
-			<div bp="grid vertical-center text-center" class="mx-lg-n5 account">
+			<div bp="grid vertical-center text-center" class="mx-xl-n5 account">
 				{% if craft.app.session.getFlash('notice') == 'User saved.'|t %}
-				<div bp="10@lg offset-2@lg" class="success">
+				<div bp="10@xl offset-2@xl" class="success">
 					<h4 class="p-0">You have successfully updated your account!</h4>
 				</div>
 				{% endif %}
-				<div bp="5@md 4@lg offset-2@lg" class="box">
+				<div bp="6@md 5@xl offset-2@xl" class="box">
 					<div>
 						<h2 class="pt-0">Current<br>Subscription</h2> 
 						<div class="entry-box headfont">
@@ -77,7 +76,7 @@
 						</div>
 					</div>
 				</div>
-                <div bp="7@md 6@lg" class="box settings">
+				<div bp="6@md 5@xl" class="box mt-4 mt-md-0">
 					<div class="form-fields">
 						<h2 class="pt-0 pb-4 mt-n3">Edit your details</h2>
 						{% if user.hasErrors() %}

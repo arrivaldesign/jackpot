@@ -37,14 +37,14 @@
 				{% if subscription.status == 'active' %}
 			<div bp="grid gap-none vertical-center">
 				<div bp="10@lg offset-2@lg">
-					<h2 class="pb-5">{{ subscription.startDate|date('F') }} Draw</h2>
+					<h2 class="pb-4 pb-sm-5">{{ subscription.startDate|date('F') }} Draw</h2>
 				</div>
-				<div bp="5@md 4@lg offset-2@lg" class="image">
+				<div bp="5@sm 4@lg offset-2@lg" class="image">
 					<div>
 						<img src="/images/entry-image.webp" alt="" width="765" height="1085">
 					</div>
 				</div>
-				<div bp="7@md 6@lg" class="content">
+				<div bp="7@sm 6@lg" class="content">
 					<div>
 						<h3 class="p-0">{{ extraForm.entries }}</h3>
 						<h5 class="p-0 mt-n2"><strong>Monthly Entries</strong></h5>
@@ -85,7 +85,7 @@
 
 			if (distance < 0) {
 				clearInterval(x);
-				document.getElementById("timer").innerHTML = "EXPIRED";
+				document.getElementById("timer").innerHTML = "<span>EXPIRED</span>";
 			}
 		}, 1000);
 	{% endjs %}

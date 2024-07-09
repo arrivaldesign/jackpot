@@ -2,15 +2,15 @@
     <div class="wrap">
         <div bp="grid vertical-center">
         {% for post in posts %}
-            <div bp="6@md 5@lg">
-                <h5 class="pt-0">Latest from the blog</h5>
+            <div bp="6@md 5@lg last first@md">
+                <h5 class="pt-md-0">Latest from the blog</h5>
                 <h2 class="medium pt-2">{{ post.title }}</h2>
                 {% for block in post.postContent %}
                 <p>{{ block.text | excerptify(200) ~ '...' }}</p>
                 {% endfor %}
                 <p><a href="{{ post.url }}" class="caplink brand3">Read More</a></p>
             </div>
-            <div bp="6@md offset-7@lg" class="ml-xl-n4">
+            <div bp="6@md offset-7@lg first last@md" class="ml-xl-n4">
                 {% set image = post.featureImage.one() %}
                 {% if image %}
                 <figure>

@@ -40,12 +40,12 @@
                     </div>
                     {% endif %}
                     <div bp="grid vertical-center">
-                        <div bp="12 offset-2@lg" class="mx-lg-n5">
-                            <h2 class="pt-0 pb-5 ml-lg-2">Your Purchase</h2>
+                        <div bp="12 offset-2@xl" class="mx-xl-n5">
+                            <h2 class="pt-0 pb-4 pb-md-5 ml-lg-2">Your Purchase</h2>
                         </div>
                     </div>
-                    <div bp="grid vertical-center text-center" class="mx-lg-n5">
-                        <div bp="5@md 4@lg offset-2@lg" class="box">
+                    <div bp="grid vertical-center text-center" class="mx-xl-n5">
+					    <div bp="6@md 5@xl offset-2@xl" class="box mb-6 mb-md-0">
                             <div>
                                 <h2 class="pt-0">Subscription</h2> 
                                 <div class="entry-box headfont">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div bp="7@md 6@lg" class="box">
+					    <div bp="6@md 5@xl" class="box mt-2 mt-md-0">
                             <div class="tabs">
                                 <button class="btn brandbg2 whitetext nowidth" id="create">Create an Account</button>
                                 <button class="btn brandbg3 whitetext nowidth" id="signin">Sign In</button>
@@ -149,7 +149,7 @@
                                                 <div bp="5@lg">
                                                     <button class="btn brandbg4 whitetext stroke decal caps rounded" id="submit">Login</button>
                                                 </div>
-                                                <div bp="7@lg text-right">
+                                                <div bp="7@lg text-right@lg">
                                                     <a href="#" data-hystmodal="#modal" class="forgot">Forgotten your password?</a>
                                                 </div>
                                             </div>
@@ -164,7 +164,7 @@
                                     {{ craft.enupalStripe.paymentForm('nurseryDraw') }}
                                     {% do view.registerAssetBundle("yii\\web\\JqueryAsset", 0) %}
                                     <button class="btn brandbg whitetext stroke decal caps rounded mt-4" id="final">Make Payment</button>
-                                    <p class="small pt-5">By continuing with your payment, you agree that any subscription will automatically renew at the price and frequency listed on this page until it ends or you cancel.</p>
+                                    <p class="small pt-4 pt-md-5">By continuing with your payment, you agree that any subscription will automatically renew at the price and frequency listed on this page until it ends or you cancel.</p>
                                     <p class="small">All cancellations are subject to the <a href="#">cancellation policy</a>.</p>
                                 </div>
                             </div>
@@ -245,7 +245,9 @@
                                 }
                             },
                             submitHandler: function(form) {
-			                    var dataString = $(form).serialize();
+                                        $(".register .create").addClass('hide-left');
+                                        $(".register .subscribe").addClass('show-right');
+			                    /*var dataString = $(form).serialize();
                                 dataString += '&action=users/login';
                                 $.ajax({
                                     url: "/",
@@ -254,11 +256,10 @@
                                     dataType: 'json',
                                     contentType: "application/x-www-form-urlencoded",
                                     success: function(data) {
-                                        alert(data);
                                         $(".register .create").addClass('hide-left');
                                         $(".register .subscribe").addClass('show-right');
                                     }         
-                                });
+                                });*/
                             }
                         });
 

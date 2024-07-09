@@ -22,11 +22,12 @@
                         {% endfor %}
                     {% endif %}
                 </figure>
-                <h1 class="h2">{{ entry.title }}</h1>
+                <h1 class="h2 pt-0 pt-md-3">{{ entry.title }}</h1>
                 {% include "_includes/post-blocks.twig" with { blocks: entry.postContent.all() } only %}
             </div>
             <div bp="3@lg offset-10@lg" class="blog-list">
-                <div bp="grid">
+                <h2 bp="show hide@lg">More Articles</h2>
+                <div bp="grid" class="pt-4 pt-lg-0">
                     {% set posts = craft.entries().section('blog').id('not ' ~ entry.id).limit(4).all() %}
                     {% for post in posts %}
 					<div bp="6@sm 12@lg">
