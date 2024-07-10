@@ -1,0 +1,163 @@
+field: 4efd10b2-e9e2-4c97-b681-06d4ea08d356 # Winners Block
+fieldLayouts:
+  8afa1f87-79b8-4b5b-a6b1-e34797deb409:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: 408f6698-7aba-46f6-a85a-40c0d8aeb006 # Text
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a411122c-6cad-491a-91df-0df248b1dd0c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 7805a2e9-8dee-418f-bf76-6f90464fb2d8 # Image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fc1c9220-7054-481e-99e3-5330e4986167
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: a0e34407-26d0-4720-ad0b-b0febbab79c5 # Video Button Text
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d80ee512-ef8f-4207-954e-3ff7c6b021ab
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 173770f0-d490-4fb3-8642-f935d1854163 # Video Embed Code
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0cd2700e-ad47-4dd9-9acb-b1a56a28b809
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: e81cb047-2f53-467e-a858-fad72eaca9d7
+        userCondition: null
+fields:
+  408f6698-7aba-46f6-a85a-40c0d8aeb006: # Text
+    columnSuffix: gvtbundj
+    contentColumnType: text
+    fieldGroup: null
+    handle: text
+    instructions: null
+    name: Text
+    searchable: false
+    settings:
+      availableTransforms: ''
+      availableVolumes: '*'
+      columnType: text
+      configSelectionMode: choose
+      defaultTransform: ''
+      manualConfig: ''
+      purifierConfig: null
+      purifyHtml: true
+      removeEmptyTags: false
+      removeInlineStyles: false
+      removeNbsp: false
+      tinymceConfig: null
+    translationKeyFormat: null
+    translationMethod: none
+    type: spicyweb\tinymce\fields\TinyMCE
+  7805a2e9-8dee-418f-bf76-6f90464fb2d8: # Image
+    columnSuffix: null
+    contentColumnType: string
+    fieldGroup: null
+    handle: image
+    instructions: null
+    name: Image
+    searchable: false
+    settings:
+      allowSelfRelations: false
+      allowSubfolders: false
+      allowUploads: true
+      allowedKinds: null
+      branchLimit: null
+      defaultUploadLocationSource: 'volume:f3561a10-9d83-48b1-9417-27a956ea16c0' # Site Wide
+      defaultUploadLocationSubpath: null
+      localizeRelations: false
+      maintainHierarchy: false
+      maxRelations: null
+      minRelations: null
+      previewMode: full
+      restrictFiles: false
+      restrictLocation: false
+      restrictedDefaultUploadSubpath: null
+      restrictedLocationSource: 'volume:f3561a10-9d83-48b1-9417-27a956ea16c0' # Site Wide
+      restrictedLocationSubpath: null
+      selectionLabel: null
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      sources: '*'
+      targetSiteId: null
+      validateRelatedElements: false
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  173770f0-d490-4fb3-8642-f935d1854163: # Video Embed Code
+    columnSuffix: fstvkrvv
+    contentColumnType: text
+    fieldGroup: null
+    handle: video
+    instructions: null
+    name: 'Video Embed Code'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: false
+      columnType: null
+      initialRows: 4
+      multiline: true
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  a0e34407-26d0-4720-ad0b-b0febbab79c5: # Video Button Text
+    columnSuffix: vityjefy
+    contentColumnType: text
+    fieldGroup: null
+    handle: videoButtonText
+    instructions: null
+    name: 'Video Button Text'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: false
+      columnType: null
+      initialRows: 4
+      multiline: false
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: block
+name: block
+sortOrder: 1

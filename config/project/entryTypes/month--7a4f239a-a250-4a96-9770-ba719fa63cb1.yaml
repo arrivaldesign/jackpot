@@ -1,0 +1,209 @@
+fieldLayouts:
+  a27b1857-8d1f-451f-908e-e0f8d06efc1e:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 8f4aad71-0a4f-47a2-82e2-025421f503c9
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 9ea1bc09-4b4d-4b34-9fe2-24e719e73a1e
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: 3514d803-622c-4502-a9c1-8997f6b53c39 # First Prize Title
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: abdd8bf5-888e-4f10-976c-a6ee2de50180
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 0277e208-c87b-488f-be29-f21d42e76df1 # First Prize Sub Title
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4db3e4c2-546f-4ef4-a55c-3beea279c885
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: aecd9b50-8aee-4633-a25e-57547e07839b # First Prize Image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0e97f532-568e-493d-b340-cf25fe6b84a6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 61662a25-0786-4c4c-b29e-3476d2a0ad09 # First Prize Winning Number
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6996c9a9-f154-428f-a7a2-3cbd3645a3e2
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'First Prize'
+        uid: 4e2e6d43-0414-4c3c-8c14-1209787fc24b
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: d2a684f2-2c9d-4f8b-88de-d4c59deb1ba6 # Second Prize Title
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2966e764-7a23-4d31-8e3e-5fbcf6235fd1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 5bbf6420-69cf-4078-9dac-6a6e3dfa3c24 # Second Prize Sub Title
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 557ef532-6bbd-456d-81a1-6cf11208d783
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 2432ffb6-1252-4e03-81bc-5f0ce78768bc # Second Prize Image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: da9ed947-5ead-4bae-8024-5a366df60a63
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 099c0430-f5c7-4ce8-b6b6-97e4c164a9b6 # Second Prize Winning Number
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: dfab2a48-1526-4a79-b7ef-43e46fa714a3
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Second Prize'
+        uid: 9a07741d-79c3-4b56-9772-26006a3d257f
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: 28d54de2-906a-4583-b174-eba7960cdcb3 # Third Prize Title
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e4444ccb-af7a-47da-8032-8e5632da9a09
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 9c96d25f-ad46-41eb-8980-e67c9f586a3c # Third Prize Sub Title
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 90b164db-eca1-4215-a83b-77d897e2629c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: c008ce94-a3a9-49f5-a223-36765e6a2815 # Third Prize Image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7ed3f45e-145f-46ea-8204-7d7db8e7c766
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: ce112ca4-a1bf-4aba-be78-bca6b245a66b # Third Prize Winning Number
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: dbb871d3-6601-4a15-bcd0-af5cb321f257
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Third Prize'
+        uid: 9c1076c1-1b55-4ae5-b640-e0a09b4811e2
+        userCondition: null
+handle: month
+hasTitleField: true
+name: Month
+section: 97b53389-0514-4756-98ef-2262b951cc4d # Results
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+sortOrder: 1
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

@@ -1,0 +1,58 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+		    <section class="feature static">
+    			<div class="wrap">
+    				<div bp="grid vertical-center">
+    					<div bp="12" class="content">
+    						<h1>Contact Us</h1>
+    					</div>
+    				</div>
+    			</div>
+    		</section>
+            <section class="section inner-intro">
+                <div class="wrap">
+                    <div bp="grid">
+                        <div bp="8@lg offset-3@lg" class="contact-form">
+                            <h2 class="medium pt-0">Get In Touch</h2>
+                            <p class="h5 mt-n2 mb-4">Send us your details and we'll get back to you shortly.</p>
+                            <form action="" name="contPgForm" id="contPgForm" method="post" novalidate="novalidate">
+                                <div bp="grid">
+                                    <div bp="6@md">
+                                        <div>
+                                            <label for="csname">Name</label>
+                                            <input type="text" name="csname" id="csname" class="required input" title="Please enter a name" aria-required="true">
+                                        </div>
+                                        <div>
+                                            <label for="cstel">Contact Number</label>
+                                            <input type="text" name="cstel" id="cstel" class="required input" title="Please enter a contact number" aria-required="true">
+                                        </div>
+                                        <div>
+                                            <label for="csemail">Email Address</label>
+                                            <input type="email" name="csemail" id="csemail" class="required input" title="Please enter a valid email address" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div bp="6@md" class="mt-n3 mt-sm-n4 mt-md-0">
+                                        <div class="fullheight">
+                                            <label for="csenquiry">Your Message</label>
+                                            <textarea name="csenquiry" id="csenquiry" class="input textarea"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="captcha_container1"></div>
+                                <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha1" id="hiddenRecaptcha1" title="Please confirm that you are not a robot" aria-required="true">
+                                <div bp="grid vertical-center" class="mt-2">
+                                    <div bp="4@lg 3@xl">
+                                        <input type="submit" value="Submit" class="btn brandbg4 whitetext stroke decal fullwidth caps rounded">
+                                    </div>
+                                    <div bp="9@xl text-center text-left@md" class="gdpr">
+                                        <p class="m-0">We’re fully committed to handling personal information you’ve supplied to us in compliance with the latest GDPR laws, and we’ll never share your details.</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% include "_includes/cta.twig" %}
+{% endblock %}

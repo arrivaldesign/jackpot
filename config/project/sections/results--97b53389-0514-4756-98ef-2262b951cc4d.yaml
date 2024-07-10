@@ -1,0 +1,24 @@
+defaultPlacement: end
+enableVersioning: true
+handle: results
+name: Results
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  9c0b7811-27f0-4641-a2df-f3b3fd99623e: # Nursery Jackpot
+    enabledByDefault: true
+    hasUrls: true
+    template: results/_entry
+    uriFormat: 'results/{slug}'
+type: channel

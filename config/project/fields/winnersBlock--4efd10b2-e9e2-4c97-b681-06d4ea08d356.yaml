@@ -1,0 +1,16 @@
+columnSuffix: null
+contentColumnType: string
+fieldGroup: 0d3a95d2-6843-4324-b92e-9c118238fa7f # Common
+handle: winnersBlock
+instructions: null
+name: 'Winners Block'
+searchable: false
+settings:
+  contentTable: '{{%matrixcontent_winnersblock}}'
+  maxBlocks: null
+  minBlocks: null
+  propagationKeyFormat: null
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

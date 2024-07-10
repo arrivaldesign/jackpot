@@ -499,6 +499,25 @@ ul.fancy {
   		height: 21px;
 	}
 }
+.image {
+	position: relative;
+	.star {
+		position: absolute;
+		top: -40px;
+		left: -20px;
+		transform: scale(0.7);
+		transform-origin: top left;
+		@media @xs { transform: none; top: 20px; left: -50px; }
+	}
+	.right & {
+		.star {
+			left: auto;
+			right: -23px;
+			transform-origin: top right;
+			@media @xs { right: -50px; }
+		}
+	}
+}
 
 /* Accordion */
 
@@ -958,14 +977,6 @@ ul.fancy {
 		.bg-img('ring-bg.webp');
 		background-size: cover;
 		.white();
-		.image {
-			position: relative;
-			.star {
-				position: absolute;
-				top: 80px;
-				left: -50px;
-			}
-		}
 		.wrap {
 			> [bp~="grid"] {
 				padding: 140px 0 40px;
@@ -2768,6 +2779,48 @@ ul.fancy {
 		}
 	}
 }
+.winners {
+	.bg-img('ltblue-ring-bg.webp');
+	background-size: cover;
+	.white();
+	text-align: center;
+	position: relative;
+	.wrap {
+		overflow: hidden;
+		.rounded {
+			border-radius: 10px 10px 0 0;
+		}
+		figure {
+			background-color: #fff;
+			padding: 30px 20px;
+			border-radius: 0 0 10px 10px;
+			q {
+				display: block;
+				.fontclamp(20,2.2,26);
+				font-weight: var(--bold);
+				font-style: italic;
+				line-height: 1.3;
+				color:var(--text-color);
+				padding-bottom: 20px;
+			}
+			figcaption {
+				color:var(--brand-color4);
+				font-weight: var(--bold);
+			}
+		}
+		.testimonial-swiper {
+			margin-top: 40px;
+		}
+	}
+	.swiper-pagination {
+		--swiper-pagination-bullet-inactive-color: var(--brand-color2);
+		--swiper-pagination-color: #fff;
+		--swiper-pagination-bullet-size:12px;
+		--swiper-pagination-bullet-horizontal-gap:6px;
+		--swiper-pagination-bottom:6%;
+		@media @sm { --swiper-pagination-bottom:7%; }
+	}
+}
 .instagram {
 	iframe {
 		vertical-align: middle;
@@ -3031,6 +3084,14 @@ label.error, label.err1 {
 			visibility: hidden;
 			pointer-events: none;
 			position: absolute;
+		}
+	}
+	&.hystmodal--video {
+		.hystmodal__window {
+			width: 70%;
+			iframe {
+
+			}
 		}
 	}
 }

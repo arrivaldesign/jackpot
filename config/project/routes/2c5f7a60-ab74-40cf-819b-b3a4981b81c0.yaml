@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 15
+template: _singles/contact
+uriParts:
+  - contact
+uriPattern: contact

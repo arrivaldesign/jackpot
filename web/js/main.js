@@ -183,11 +183,20 @@ $(document).ready(function(){
 
 	var swiper2 = new Swiper('.testimonial-swiper', {
 		spaceBetween: 30,
-		effect: 'fade',
-		fadeEffect: { crossFade: true },
+		speed: 1000,
 		pagination: {
 			el: '.swiper-pagination',
+			type: 'bullets',
+			clickable: true
 		},
+		breakpoints: {
+			720: {
+				slidesPerView: 2,
+			},
+			960: {
+				slidesPerView: 3,
+			}
+		}
 	});
 
 	var swiper4 = new Swiper(".mySwiper", {

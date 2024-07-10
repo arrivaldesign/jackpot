@@ -1,0 +1,127 @@
+field: 0d5a003e-f56f-4b38-b32b-15e21ad566d4 # Testimonial Card
+fieldLayouts:
+  3c17a853-3a69-4148-8ebf-69cb4b10e99f:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: f414d85a-2caf-443c-8b4a-253edd0a8377 # Image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4b2bf55c-d9f3-4297-b920-ca05172f4d9c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: fb9c40a3-7c65-4c62-b0ca-8837a6ff4d6f # Quote
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cdf2c7d7-3e04-4613-b603-d52c4c6704de
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 771b7ae0-71ff-48ec-8be9-e71d968a27d0 # Author
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a86b5731-922f-4ce7-a821-ba34e13b8fdb
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 6c88cacb-c8a7-4505-ae47-8ad49c4cee15
+        userCondition: null
+fields:
+  771b7ae0-71ff-48ec-8be9-e71d968a27d0: # Author
+    columnSuffix: axnobecr
+    contentColumnType: text
+    fieldGroup: null
+    handle: author
+    instructions: null
+    name: Author
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: false
+      columnType: null
+      initialRows: 4
+      multiline: false
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  f414d85a-2caf-443c-8b4a-253edd0a8377: # Image
+    columnSuffix: null
+    contentColumnType: string
+    fieldGroup: null
+    handle: image
+    instructions: null
+    name: Image
+    searchable: false
+    settings:
+      allowSelfRelations: false
+      allowSubfolders: false
+      allowUploads: true
+      allowedKinds: null
+      branchLimit: null
+      defaultUploadLocationSource: 'volume:f3561a10-9d83-48b1-9417-27a956ea16c0' # Site Wide
+      defaultUploadLocationSubpath: null
+      localizeRelations: false
+      maintainHierarchy: false
+      maxRelations: null
+      minRelations: null
+      previewMode: full
+      restrictFiles: false
+      restrictLocation: false
+      restrictedDefaultUploadSubpath: null
+      restrictedLocationSource: 'volume:f3561a10-9d83-48b1-9417-27a956ea16c0' # Site Wide
+      restrictedLocationSubpath: null
+      selectionLabel: null
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      sources: '*'
+      targetSiteId: null
+      validateRelatedElements: false
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  fb9c40a3-7c65-4c62-b0ca-8837a6ff4d6f: # Quote
+    columnSuffix: dbxmrvcw
+    contentColumnType: text
+    fieldGroup: null
+    handle: quote
+    instructions: null
+    name: Quote
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: false
+      columnType: null
+      initialRows: 4
+      multiline: false
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: card
+name: Card
+sortOrder: 1

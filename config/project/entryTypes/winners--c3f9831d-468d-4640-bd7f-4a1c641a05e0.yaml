@@ -1,0 +1,77 @@
+fieldLayouts:
+  8fd71177-9f53-4fd2-98cd-e5984ee09cde:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: c62c32d2-e7bf-4d42-ac52-51db80ac15ff
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 4efd10b2-e9e2-4c97-b681-06d4ea08d356 # Winners Block
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 21a63ea1-0098-41eb-aabf-517e8c9fd5c4
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: ce077d4e-62b6-43a2-9317-c7131de5d92d
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            elementCondition: null
+            fieldUid: 0d5a003e-f56f-4b38-b32b-15e21ad566d4 # Testimonial Card
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 06920659-5078-49ec-af89-8956acc30113
+            userCondition: null
+            warning: null
+            width: 100
+        name: Testimonials
+        uid: 3de51cec-ebe4-4623-8679-a9774ce82a55
+        userCondition: null
+handle: winners
+hasTitleField: true
+name: Winners
+section: df613f85-7116-4c0e-802e-fd57bf95d525 # Winners
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+sortOrder: 1
+titleFormat: '{section.name|raw}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

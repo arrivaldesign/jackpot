@@ -1,0 +1,73 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+		    <section class="feature static">
+    			<div class="wrap">
+    				<div bp="grid vertical-center">
+    					<div bp="12" class="content">
+    						<h1>{{ entry.title }}</h1>
+    					</div>
+    				</div>
+    			</div>
+    		</section>
+            {% set step = 0 %}
+            {% for block in entry.winnersBlock %}
+            {% set step = step + 1 %}
+            <section class="section {{ step is even ? 'right' : '' }} {{ step > 1 ? 'pt-0' : '' }}">
+                <div class="wrap">
+                    <div bp="grid vertical-center">
+                        <div bp="5@md {{ step is even ? 'first last@md offset-8@md' : '' }}" class="{{ step is even ? 'ml-md-n6' : 'mr-md-n6' }} image">
+                            {% if block.image.one() %}
+                            <img src="{{ block.image.one().getUrl({ width: 690, height: 420}) }}" alt="{{ block.image.one().alt }}" width="690" height="420" class="rounded double">
+                            <div class="star brand"><i class="fa-solid fa-star"></i></div>
+                            {% endif %}
+                        </div>
+                        <div bp="6@md {{ step is even ? 'first' : 'offset-7@md' }}" class="{{ step is even ? 'mr-xl-4' : 'ml-xl-4' }}">
+                            {{ block.text }}
+                            {% if block.video %}
+                            <p class="pt-2"><button class="btn {{ step is even ? 'brandbg3' : 'brandbg5' }} whitetext stroke decal nowidth caps rounded" data-hystmodal="#modalVideo{{ step }}">{{ block.videoButtonText }}</button></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% if block.video %}
+            <div class="hystmodal hystmodal--simple hystmodal--video" id="modalVideo{{ step }}">
+                <div class="hystmodal__wrap">
+                    <div class="hystmodal__window">
+                        <button class="hystmodal__close">Close</button>
+                        {{ block.video|raw }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <section class="section winners mb-5">
+                <div class="wrap pb-5">
+                    <h2 class="p-0 pb-md-3">More of Our Winners</h2>
+                    <div class="swiper-container testimonial-swiper">
+                        <div class="swiper-wrapper">
+                            {% for block in entry.testimonialCard %}
+                            <div class="swiper-slide">
+                                {% if block.image.one() %}
+                                <img src="{{ block.image.one().getUrl({ width: 450, height: 280}) }}" alt="{{ block.image.one().alt }}" width="450" height="280" class="rounded double">
+                                <figure>
+                                    <q>{{ block.quote }}</q>
+                                    <figcaption>{{ block.author }}</figcaption>
+                                </figure>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </section>
+            {% include "_includes/prize-banner.twig" %}
+            {% include "_includes/benefits.twig" %}
+            {% js %}
+                const myModal = new HystModal({
+                    linkAttributeName: "data-hystmodal",
+                });
+            {% endjs %}
+{% endblock %}

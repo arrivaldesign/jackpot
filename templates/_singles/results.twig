@@ -1,0 +1,14 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+		    <section class="feature static">
+    			<div class="wrap">
+    				<div bp="grid vertical-center">
+    					<div bp="12" class="content">
+    						<h1>{{ entry.title }}</h1>
+    					</div>
+    				</div>
+    			</div>
+    		</section>
+            {% include "_includes/benefits.twig" %}
+{% endblock %}
